@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>周易卦象</title>
+    <style>
+        body, html {
+            height: 100%; /* 全屏高度 */
+            margin: 0; /* 去掉默认的外边距 */
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            font-family: 'SimHei', sans-serif; /* 使用黑体字体 */
+        }
+    
+        .content-container {
+            display: flex; /* 使用 Flex 布局 */
+            align-items: center; /* 确保子项目在交叉轴上居中 */
+        }
+    
+        .hexagram-container {
+            display: flex; /* 使用 Flex 布局 */
+            flex-direction: column; /* 排列方向为纵向 */
+            align-items: flex-end; /* 子项目向容器的右侧对齐 */
+            justify-content: center; /* 子项目在容器的主轴方向（即纵轴）上居中 */
+        }
+    
+        .hexagram-line {
+            width: 100px; /* 线条宽度 */
+            height: 20px; /* 线条高度 */
+            margin: 5px 0; /* 线条之间的垂直间隔 */
+        }
+    
+        .yang {
+            background-color: black; /* 阳爻使用黑色背景 */
+        }
+    
+        .yin::before, .yin::after {
+            content: '';
+            display: inline-block; /* 设置为行内块，使之可以设置宽度和高度 */
+            width: 40px; /* 阴爻虚线宽度 */
+            height: 20px; /* 阴爻虚线高度 */
+            background-color: black; /* 阴爻使用黑色背景 */
+        }
+    
+        .yin::after {
+            margin-left: 20px; /* 阴爻中间的空白宽度 */
+        }
+    
+        .text-container {
+            /* Container for the name and the start button */
+            display: flex;
+            flex-direction: column; /* 项目从上到下排列 */
+            align-items: center; /* 水平居中对齐项目 */
+            margin-right: 20px; /* 设置文本和按钮容器与卦象容器之间的间距。根据需要调整这里的值。 */
+        }
+    
+        .hexagram-name {
+            margin-bottom: 20px; /* 卦象名称与按钮之间的间距 */
+            font-size: 24px; /* 字体大小 */
+            font-weight: bold; /* 字体粗细 */
+        }
+    
+        .start-button {
+            padding: 10px 20px; /* 内边距 */
+            font-size: 18px; /* 字体大小 */
+            cursor: pointer; /* 鼠标悬浮时的指针形状 */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <div class="text-container">
+            <div id="hexagram-name" class="hexagram-name"></div>
+            <button id="start-button" class="start-button">开始算卦</button>
+        </div>
+        <div id="hexagram" class="hexagram-container"></div>
+    </div>
+    <script>
+        // 扔硬币
+        function tossACoin(n = 6) {
+            let results = [];
+            for (let i = 0; i < n; i++) {
+                results.push(Math.random() < 0.5 ? '阴' : '阳');
+            }
+            return results;
+        }
+
+        // 画卦象
+        function plotHexagram(results) {
+            const hexagramDiv = document.getElementById('hexagram');
+            hexagramDiv.innerHTML = ''; // 清除之前的绘制
+
+            for (let i = 0; i < results.length; i++) {
+                const lineDiv = document.createElement('div');
+                lineDiv.className = 'hexagram-line ' + (results[i] === '阳' ? 'yang' : 'yin');
+                hexagramDiv.appendChild(lineDiv);
+            }
+        }
+
+        // 判断卦象
+        function judgeHexagram(results) {
+            // 映射表
+            const map = {
+                '111': '乾',
+                '000': '坤',
+                '101': '离',
+                '010': '坎',
+                '100': '震',
+                '001': '艮',
+                '110': '巽',
+                '011': '兑'
+            };
+
+            function convertToBinaryString(result) {
+                return result.map(r => r === '阳' ? '1' : '0').join('');
+            }
+
+            const lowerTrigram = convertToBinaryString(results.slice(0, 3));
+            const upperTrigram = convertToBinaryString(results.slice(3));
+
+            const lowerName = map[lowerTrigram] || '未知';
+            const upperName = map[upperTrigram] || '未知';
+
+            return '上' + lowerName + '下' + upperName;
+        }
+
+        // 开始算卦函数
+        function startDivination() {
+            // 清空卦象和名称
+            document.getElementById('hexagram').innerHTML = '';
+            document.getElementById('hexagram-name').textContent = '';
+
+            const results = tossACoin();
+            const hexagramName = judgeHexagram(results);
+            plotHexagram(results);
+            document.getElementById('hexagram-name').textContent = hexagramName;
+        }
+
+        // 为按钮添加事件监听器
+        document.getElementById('start-button').addEventListener('click', startDivination);
+
+
+    </script>
+</body>
+</html>
