@@ -7,7 +7,7 @@ def toss_a_coin(n=6):
     return ['阴' if random.random() < 0.5 else '阳' for _ in range(n)]
 
 def judge_hexagram(results):
-    map = {
+    trigram_map = {
         '111': '乾',
         '000': '坤',
         '101': '离',
@@ -17,18 +17,10 @@ def judge_hexagram(results):
         '110': '巽',
         '011': '兑'
     }
-
-    def convert_to_binary_string(result):
-        return ''.join(['1' if r == '阳' else '0' for r in result])
-
-    # 修改卦象判断顺序
-    lower_trigram = convert_to_binary_string(results[3:])  # 下卦为后三爻
-    upper_trigram = convert_to_binary_string(results[:3])  # 上卦为前三爻
-
-    upper_name = map.get(upper_trigram, '未知')
-    lower_name = map.get(lower_trigram, '未知')
-
-    return f'上{upper_name}下{lower_name}'
+    convert_to_binary_string = lambda result: ''.join(['1' if r == '阳' else '0' for r in result])
+    lower_name = trigram_map.get(convert_to_binary_string(results[:3]), '未知')
+    upper_name = trigram_map.get(convert_to_binary_string(results[3:]), '未知')
+    return f'上{lower_name}下{upper_name}'
 
 @app.route('/api/getHexagram', methods=['GET'])
 def get_hexagram():
