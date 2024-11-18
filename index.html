@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <title>周易卦象</title>
@@ -77,70 +77,39 @@
         <div id="hexagram" class="hexagram-container"></div>
     </div>
     <script>
-        // 扔硬币
-        function tossACoin(n = 6) {
-            let results = [];
-            for (let i = 0; i < n; i++) {
-                results.push(Math.random() < 0.5 ? '阴' : '阳');
+        async function fetchHexagram() {
+            const response = await fetch('/api/getHexagram');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-            return results;
+            return await response.json();
         }
 
-        // 画卦象
         function plotHexagram(results) {
             const hexagramDiv = document.getElementById('hexagram');
             hexagramDiv.innerHTML = ''; // 清除之前的绘制
 
-            for (let i = 0; i < results.length; i++) {
+            results.forEach(result => {
                 const lineDiv = document.createElement('div');
-                lineDiv.className = 'hexagram-line ' + (results[i] === '阳' ? 'yang' : 'yin');
+                lineDiv.className = `hexagram-line ${result === '阳' ? 'yang' : 'yin'}`;
                 hexagramDiv.appendChild(lineDiv);
+            });
+        }
+
+        async function startDivination() {
+            try {
+                document.getElementById('hexagram').innerHTML = '';
+                document.getElementById('hexagram-name').textContent = '';
+
+                const { results, hexagramName } = await fetchHexagram();
+                plotHexagram(results);
+                document.getElementById('hexagram-name').textContent = hexagramName;
+            } catch (error) {
+                console.error('Error fetching hexagram:', error);
             }
         }
 
-        // 判断卦象
-        function judgeHexagram(results) {
-            // 映射表
-            const map = {
-                '111': '乾',
-                '000': '坤',
-                '101': '离',
-                '010': '坎',
-                '001': '震',
-                '100': '艮',
-                '110': '巽',
-                '011': '兑'
-            };
-
-            function convertToBinaryString(result) {
-                return result.map(r => r === '阳' ? '1' : '0').join('');
-            }
-
-            const lowerTrigram = convertToBinaryString(results.slice(0, 3));
-            const upperTrigram = convertToBinaryString(results.slice(3));
-
-            const lowerName = map[lowerTrigram] || '未知';
-            const upperName = map[upperTrigram] || '未知';
-
-            return '上' + lowerName + '下' + upperName;
-        }
-
-        // 开始算卦函数
-        function startDivination() {
-            // 清空卦象和名称
-            document.getElementById('hexagram').innerHTML = '';
-            document.getElementById('hexagram-name').textContent = '';
-
-            const results = tossACoin();
-            const hexagramName = judgeHexagram(results);
-            plotHexagram(results);
-            document.getElementById('hexagram-name').textContent = hexagramName;
-        }
-
-        // 为按钮添加事件监听器
         document.getElementById('start-button').addEventListener('click', startDivination);
-
-
     </script>
 </body>
 </html>
