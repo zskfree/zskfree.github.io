@@ -40,9 +40,10 @@
     
         .hexagram-container {
             display: flex; /* 使用 Flex 布局 */
-            flex-direction: column; /* 排列方向为纵向 */
-            align-items: flex-end; /* 子项目向容器的右侧对齐 */
+            flex-direction: column-reverse;  /* 修改：反转显示顺序，使上卦在上方 */
+            align-items: center;  /* 修改：居中对齐 */
             justify-content: center; /* 子项目在容器的主轴方向（即纵轴）上居中 */
+            margin-left: 20px;  /* 添加：与文字部分的间距 */
         }
     
         .hexagram-line {
@@ -65,6 +66,7 @@
             background: linear-gradient(90deg, #000000, #333333); /* 阴爻使用黑色背景 */
             border-radius: 5px; /* 圆角 */
             transition: all 0.3s ease;
+            position: relative;  /* 添加：确保阴爻正确显示 */
         }
     
         .yin::after {
@@ -139,9 +141,11 @@
             const hexagramDiv = document.getElementById('hexagram');
             hexagramDiv.innerHTML = ''; // 清除之前的绘制
 
-            results.forEach(result => {
+            // 修改：添加延迟动画
+            results.forEach((result, index) => {
                 const lineDiv = document.createElement('div');
                 lineDiv.className = `hexagram-line ${result === '阳' ? 'yang' : 'yin'}`;
+                lineDiv.style.animationDelay = `${index * 0.1}s`;
                 hexagramDiv.appendChild(lineDiv);
             });
         }
