@@ -11,11 +11,16 @@
             justify-content: center; /* 水平居中 */
             align-items: center; /* 垂直居中 */
             font-family: 'SimHei', sans-serif; /* 使用黑体字体 */
+            background: linear-gradient(to right, #f0f0f0, #e0e0e0); /* 背景渐变 */
         }
     
         .content-container {
             display: flex; /* 使用 Flex 布局 */
             align-items: center; /* 确保子项目在交叉轴上居中 */
+            background: white; /* 白色背景 */
+            padding: 20px; /* 内边距 */
+            border-radius: 10px; /* 圆角 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
         }
     
         .hexagram-container {
@@ -29,6 +34,7 @@
             width: 100px; /* 线条宽度 */
             height: 20px; /* 线条高度 */
             margin: 5px 0; /* 线条之间的垂直间隔 */
+            border-radius: 5px; /* 圆角 */
         }
     
         .yang {
@@ -41,6 +47,7 @@
             width: 40px; /* 阴爻虚线宽度 */
             height: 20px; /* 阴爻虚线高度 */
             background-color: black; /* 阴爻使用黑色背景 */
+            border-radius: 5px; /* 圆角 */
         }
     
         .yin::after {
@@ -59,12 +66,22 @@
             margin-bottom: 20px; /* 卦象名称与按钮之间的间距 */
             font-size: 24px; /* 字体大小 */
             font-weight: bold; /* 字体粗细 */
+            color: #333; /* 字体颜色 */
         }
     
         .start-button {
             padding: 10px 20px; /* 内边距 */
             font-size: 18px; /* 字体大小 */
             cursor: pointer; /* 鼠标悬浮时的指针形状 */
+            background-color: #007bff; /* 按钮背景颜色 */
+            color: white; /* 按钮文字颜色 */
+            border: none; /* 去掉边框 */
+            border-radius: 5px; /* 圆角 */
+            transition: background-color 0.3s; /* 背景颜色过渡效果 */
+        }
+
+        .start-button:hover {
+            background-color: #0056b3; /* 按钮悬停背景颜色 */
         }
     </style>
 </head>
