@@ -21,13 +21,13 @@ def judge_hexagram(results):
     def convert_to_binary_string(result):
         return ''.join(['1' if r == '阳' else '0' for r in result])
 
-    lower_trigram = convert_to_binary_string(results[:3])
-    upper_trigram = convert_to_binary_string(results[3:])
+    upper_trigram = convert_to_binary_string(results[:3])  # 修改：前三爻为上卦
+    lower_trigram = convert_to_binary_string(results[3:])  # 修改：后三爻为下卦
 
+    upper_name = map.get(upper_trigram, '未知')  # 修改：交换上下卦名称
     lower_name = map.get(lower_trigram, '未知')
-    upper_name = map.get(upper_trigram, '未知')
 
-    return f'上{lower_name}下{upper_name}'
+    return f'上{upper_name}下{lower_name}'
 
 @app.route('/api/getHexagram', methods=['GET'])
 def get_hexagram():
