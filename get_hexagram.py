@@ -21,10 +21,11 @@ def judge_hexagram(results):
     def convert_to_binary_string(result):
         return ''.join(['1' if r == '阳' else '0' for r in result])
 
-    upper_trigram = convert_to_binary_string(results[:3])  # 修改：前三爻为上卦
-    lower_trigram = convert_to_binary_string(results[3:])  # 修改：后三爻为下卦
+    # 修改卦象判断顺序
+    lower_trigram = convert_to_binary_string(results[3:])  # 下卦为后三爻
+    upper_trigram = convert_to_binary_string(results[:3])  # 上卦为前三爻
 
-    upper_name = map.get(upper_trigram, '未知')  # 修改：交换上下卦名称
+    upper_name = map.get(upper_trigram, '未知')
     lower_name = map.get(lower_trigram, '未知')
 
     return f'上{upper_name}下{lower_name}'
