@@ -43,34 +43,41 @@
             flex-direction: column-reverse;  /* 修改：反转显示顺序，使上卦在上方 */
             align-items: center;  /* 修改：居中对齐 */
             justify-content: center; /* 子项目在容器的主轴方向（即纵轴）上居中 */
-            margin-left: 20px;  /* 添加：与文字部分的间距 */
+            margin-left: 40px;  /* 添加：与文字部分的间距 */
+            width: 100px; /* 添加固定宽度 */
         }
     
         .hexagram-line {
             width: 100px; /* 线条宽度 */
             height: 20px; /* 线条高度 */
-            margin: 5px 0; /* 线条之间的垂直间隔 */
+            margin: 8px 0; /* 线条之间的垂直间隔 */
             border-radius: 5px; /* 圆角 */
             transition: all 0.3s ease;
+            position: relative; /* 添加相对定位 */
+            display: flex; /* 使用flex布局 */
+            justify-content: center; /* 水平居中 */
         }
     
         .yang {
             background: linear-gradient(90deg, #000000, #333333); /* 阳爻使用黑色背景 */
         }
     
+        .yin {
+            background: none; /* 移除背景 */
+            display: flex;
+            justify-content: space-between; /* 两端对齐 */
+            width: 100%;
+        }
+
         .yin::before, .yin::after {
             content: '';
             display: inline-block; /* 设置为行内块，使之可以设置宽度和高度 */
-            width: 40px; /* 阴爻虚线宽度 */
+            width: 35px; /* 调整宽度 */
             height: 20px; /* 阴爻虚线高度 */
             background: linear-gradient(90deg, #000000, #333333); /* 阴爻使用黑色背景 */
             border-radius: 5px; /* 圆角 */
             transition: all 0.3s ease;
-            position: relative;  /* 添加：确保阴爻正确显示 */
-        }
-    
-        .yin::after {
-            margin-left: 20px; /* 阴爻中间的空白宽度 */
+            position: static; /* 移除相对定位 */
         }
     
         .text-container {
@@ -142,7 +149,7 @@
             hexagramDiv.innerHTML = ''; // 清除之前的绘制
 
             // 修改：添加延迟动画
-            results.forEach((result, index) => {
+            results.reverse().forEach((result, index) => { // 反转数组以正确显示顺序
                 const lineDiv = document.createElement('div');
                 lineDiv.className = `hexagram-line ${result === '阳' ? 'yang' : 'yin'}`;
                 lineDiv.style.animationDelay = `${index * 0.1}s`;
