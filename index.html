@@ -4,45 +4,211 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>zskksz</title>
+    <title>生如夏花</title> <!-- 浏览器标签页标题 -->
     <style>
-        html,
+        html {
+            height: 100%;
+            /* 确保 html 元素占据整个视口高度 */
+        }
+
         body {
             margin: 0;
+            /* 移除 body 的默认外边距 */
             padding: 0;
-            background-color: #000;
+            /* 移除 body 的默认内边距 */
             color: #fff;
-            height: 100vh;
+            /* 设置默认文字颜色为白色 */
+            min-height: 100vh;
+            /* 设置 body 的最小高度为视口高度 */
+            /* 设置备用字体栈，优先使用系统默认字体 */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei", sans-serif;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            /* 使用 Flexbox 布局 */
+            align-items: flex-start;
+            /* 垂直对齐方式：顶部对齐 */
+            justify-content: flex-end;
+            /* 水平对齐方式：右侧对齐 */
+            /* 设置背景图片 */
+            background-image: url('本杰明巴顿奇事.jpg');
+            /* 背景图片路径 */
+            background-size: cover;
+            /* 背景图片覆盖整个容器 */
+            background-position: center;
+            /* 背景图片居中显示 */
+            background-repeat: no-repeat;
+            /* 背景图片不重复平铺 */
+            position: relative;
+            /* 设置相对定位，为伪元素定位提供基准 */
+            z-index: 1;
+            /* 确保 body 内容在伪元素之上 */
+            /* 确保即使内容很少，背景也能覆盖 */
+            background-attachment: fixed;
+            /* 背景图片固定，不随滚动条滚动 */
+        }
+
+        /* 添加半透明黑色叠加层，增强文本可读性 */
+        body::before {
+            content: "";
+            /* 伪元素必须设置 content 属性 */
+            position: absolute;
+            /* 绝对定位，相对于 body */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* 覆盖整个 body 区域 */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* 半透明黑色背景 */
+            z-index: -1;
+            /* 将叠加层置于 body 内容之后 */
         }
 
         .container {
-            max-width: 800px;
+            max-width: 90%;
+            /* 在所有屏幕上使用百分比宽度，限制最大宽度 */
+            width: fit-content;
+            /* 让容器宽度适应内容，配合 max-width */
             padding: 20px;
-            text-align: center;
-            line-height: 2;
-            font-size: 1.8rem;
+            /* 内边距 */
+            margin-top: 40px;
+            /* 顶部外边距，与视口顶部保持距离 */
+            margin-right: 40px;
+            /* 右侧外边距，与视口右侧保持距离 */
+            text-align: right;
+            /* 容器内文本右对齐 */
             opacity: 0;
+            /* 初始状态透明 */
             animation: fadeIn 1.5s ease forwards;
+            /* 应用淡入动画 */
+            box-sizing: border-box;
+            /* 让 padding 和 border 不会增加容器的总宽度 */
         }
 
+        blockquote {
+            margin: 0;
+            /* 重置 blockquote 的默认外边距 */
+            padding: 20px;
+            /* 内边距 */
+            border-right: 5px solid #ccc;
+            /* 右侧边框样式 */
+            border-left: none;
+            /* 移除左侧边框 */
+            font-size: 2.0rem;
+            /* 引文文字大小 - 桌面端 */
+            line-height: 1.8;
+            /* 引文行高 */
+            color: #eee;
+            /* 引文文字颜色 */
+        }
+
+        /* 可以为引文来源添加样式 */
+        /* cite {
+            display: block; // 块级显示
+            margin-top: 10px; // 顶部外边距
+            font-style: normal; // 正常字体样式
+            color: #aaa; // 字体颜色
+            font-size: 1rem; // 字体大小
+        } */
+
+        /* 定义淡入动画 */
         @keyframes fadeIn {
             to {
                 opacity: 1;
+                /* 最终状态不透明 */
+            }
+        }
+
+        /* --- 响应式设计 --- */
+
+        /* 中等屏幕（例如：平板电脑） */
+        @media (max-width: 768px) {
+            /* 在平板上可以考虑居中对齐 */
+            /* body {
+                align-items: center;
+                justify-content: center;
+            } */
+
+            .container {
+                margin-top: 30px;
+                /* 减小顶部外边距 */
+                margin-right: 30px;
+                /* 减小右侧外边距 */
+                /* text-align: center; */
+                /* 如果 body 居中，文本也居中 */
+                max-width: 90%;
+                /* 确保容器不会太宽 */
+            }
+
+            blockquote {
+                font-size: 1.6rem;
+                /* 减小字体大小 */
+                padding: 15px;
+                /* 减小内边距 */
+                border-right-width: 4px;
+                /* 减小边框宽度 */
+                /* border-right: none; */
+                /* 如果居中，可能不需要边框 */
+                /* border-left: 4px solid #ccc; */
+                /* 如果居中，换回左边框 */
+            }
+        }
+
+        /* 小型屏幕（例如：手机） */
+        @media (max-width: 480px) {
+            body {
+                /* 在手机上通常居中显示更好 */
+                align-items: center;
+                /* 垂直居中 */
+                justify-content: center;
+                /* 水平居中 */
+            }
+
+            .container {
+                margin-top: 20px;
+                /* 进一步减小顶部外边距 */
+                margin-right: 0;
+                /* 移除右侧外边距，因为已经水平居中 */
+                margin-left: 0;
+                /* 移除左侧外边距 */
+                padding: 15px;
+                /* 减小内边距 */
+                text-align: center;
+                /* 文本居中 */
+                max-width: 90%;
+                /* 限制最大宽度 */
+            }
+
+            blockquote {
+                font-size: 1.2rem;
+                /* 进一步减小字体大小 */
+                padding: 10px;
+                /* 进一步减小内边距 */
+                /* 居中时通常移除左右边框或使用上下边框 */
+                border-right: none;
+                border-left: none;
+                /* border-top: 3px solid #ccc; */
+                /* border-bottom: 3px solid #ccc; */
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        人最宝贵的是生命。生命对于每个人只有一次。<br>
-        人的一生应当这样度过：当他回首往事时<br>
-        不因虚度年华而悔恨，也不因碌碌无为而羞耻。
-    </div>
+    <main class="container">
+        <!-- 页面主要内容容器 -->
+
+        <blockquote>
+            <!-- 引文内容 -->
+            人最宝贵的是生命。生命对于每个人只有一次。<br>
+            人的一生应当这样度过：当他回首往事时，<br>
+            不因虚度年华而悔恨，也不因碌碌无为而羞耻。
+            <!-- 如果知道引文来源，可以使用 <cite> 标签 -->
+            <!-- <cite>—— 《钢铁是怎样炼成的》</cite> -->
+        </blockquote>
+
+        <!-- 在这里可以添加其他内容 -->
+
+    </main>
 </body>
 
 </html>
