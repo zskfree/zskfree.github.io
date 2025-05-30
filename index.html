@@ -85,30 +85,30 @@
         }
 
         blockquote {
-            margin: 0;
-            /* 重置 blockquote 的默认外边距 */
+            margin: 0 0 20px 0; /* 为下方元素留出间距 */
             padding: 20px;
-            /* 内边距 */
-            border-right: 5px solid #ccc;
-            /* 右侧边框样式 */
-            border-left: none;
-            /* 移除左侧边框 */
+            /*内边距 */
+            border-left: 5px solid #87CEFA; /* 改为左边框，并使用主题强调色 */
+            /* border-right: 5px solid #ccc; */ /* 移除原有右边框 */
             font-size: 1.6rem;
-            /* 引文文字大小 - 桌面端 */
+            /*引文文字大小 - 桌面端 */
             line-height: 1.8;
-            /* 引文行高 */
+            /*引文行高 */
             color: #eee;
-            /* 引文文字颜色 */
+            /*引文文字颜色 */
+            text-align: left; /* 确保引文文本左对齐以提高可读性 */
+            background-color: rgba(0, 0, 0, 0.15); /* 为引文块添加非常浅的背景色以区分 */
+            border-radius: 4px; /* 轻微的圆角 */
         }
 
         /* 可以为引文来源添加样式 */
         /* cite {
-            display: block; // 块级显示
-            margin-top: 10px; // 顶部外边距
-            font-style: normal; // 正常字体样式
-            color: #aaa; // 字体颜色
-            font-size: 1rem; // 字体大小
-        } */
+                display: block; // 块级显示
+                margin-top: 10px; // 顶部外边距
+                font-style: normal; // 正常字体样式
+                color: #aaa; // 字体颜色
+                font-size: 1rem; // 字体大小
+            } */
 
         /* 定义淡入动画 */
         @keyframes fadeIn {
@@ -117,6 +117,121 @@
                 /* 最终状态不透明 */
             }
         }
+
+        /* --- 登录表单样式 --- */
+        .login-form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.35); /* 稍微调整透明度 */
+            border-radius: 8px;
+            text-align: left;
+            /* 表单内文本左对齐 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* 添加柔和的阴影 */
+        }
+
+        .login-form h3 {
+            margin-top: 0;
+            color: #eee;
+            text-align: center;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%; /* 修改：确保输入框占据100%宽度 */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+        }
+
+        .login-form input[type="text"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: #87CEFA; /* 焦点时边框高亮 */
+            box-shadow: 0 0 8px rgba(135, 206, 250, 0.5); /* 焦点时添加光晕效果 */
+            outline: none; /* 移除默认的浏览器轮廓 */
+        }
+
+        .login-form button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* 添加过渡效果 */
+        }
+
+        .login-form button:hover {
+            background-color: #4cae4c;
+            transform: translateY(-2px); /* 悬停时轻微上移 */
+        }
+
+        #login-error {
+            color: #ff6b6b;
+            margin-top: 15px; /* 修改：将 10px 调整为 15px 以保持一致性 */
+            text-align: center;
+        }
+
+        /* --- 文件链接样式 --- */
+        #file-links {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.12); /* 稍微调整透明度 */
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* 添加柔和的阴影 */
+        }
+
+        #file-links h3 {
+            margin-top: 0;
+            color: #eee;
+        }
+
+        #file-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0; /* 移除默认的 ul 外边距 */
+        }
+
+        #file-links li { /* 为列表项添加样式 */
+            margin-bottom: 10px; /* 增加列表项之间的间距 */
+        }
+
+        #file-links li:last-child { /* 移除最后一个列表项的下边距 */
+            margin-bottom: 0;
+        }
+
+        #file-links li a {
+            color: #87CEFA;
+            /* 淡蓝色 */
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 10px 8px; /* 调整内边距使点击区域更舒适 */
+            border-radius: 4px; /* 为链接添加圆角 */
+            transition: background-color 0.3s ease, color 0.3s ease; /* 添加过渡效果 */
+        }
+
+        #file-links li a:hover {
+            /* text-decoration: underline; */ /* 可以移除下划线，通过背景色变化强调 */
+            color: #ffffff; /* 悬停时文字颜色变亮 */
+            background-color: rgba(135, 206, 250, 0.25); /* 悬停时添加淡蓝色背景 */
+        }
+
 
         /* --- 响应式设计 --- */
 
@@ -198,17 +313,115 @@
         <!-- 页面主要内容容器 -->
 
         <blockquote>
-            <!-- 引文内容 -->
             人最宝贵的是生命。生命对于每个人只有一次。<br>
             人的一生应当这样度过：当他回首往事时，<br>
             不因虚度年华而悔恨，也不因碌碌无为而羞耻。
-            <!-- 如果知道引文来源，可以使用 <cite> 标签 -->
-            <!-- <cite>—— 《钢铁是怎样炼成的》</cite> -->
+
         </blockquote>
 
         <!-- 在这里可以添加其他内容 -->
+        <div id="login-section" class="login-form">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="button" onclick="handleLogin()">登录</button>
+            <p id="login-error" style="display:none;"></p>
+        </div>
+
+        <div id="file-links" style="display:none;">
+            <h3>项目链接</h3>
+            <ul>
+                <!-- 文件链接将通过 JavaScript 动态添加 -->
+            </ul>
+        </div>
 
     </main>
-</body>
 
+    <script>
+        async function handleLogin() {
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginError = document.getElementById('login-error');
+            const fileLinksSection = document.getElementById('file-links');
+            const loginSection = document.getElementById('login-section');
+            const correctUsername = "zskksz";
+            const correctPasswordHash = "4fcd3523bc4f33b3c9e4c40049b7b74d3e1da4a1ab175f16c6f686a6b2c29fc3";
+
+            async function hashPassword(password) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+            }
+
+            const enteredUsername = usernameInput.value;
+            const enteredPassword = await hashPassword(passwordInput.value);
+
+            if (enteredUsername === correctUsername && enteredPassword === correctPasswordHash) {
+                loginError.style.display = 'none';
+                loginSection.style.display = 'none';
+                fileLinksSection.style.display = 'block';
+                localStorage.setItem('isLoggedIn', 'true'); // 保存登录状态
+                displayFileLinks();
+            } else {
+                loginError.textContent = '用户名或密码错误。';
+                loginError.style.display = 'block';
+                fileLinksSection.style.display = 'none';
+                localStorage.removeItem('isLoggedIn'); // 登录失败时清除状态
+            }
+
+        }
+
+        function displayFileLinks() {
+            const fileListContainer = document.querySelector('#file-links ul');
+            fileListContainer.innerHTML = ''; // 清空现有链接
+
+            const githubUsername = 'zskksz'; // 例如 'octocat'
+            const repositoryName = 'https://www.zskksz.asia'; // 修改这里，添加 https://，并更新示例注释以保持一致性
+
+            const files = [
+                { name: 'News-Agent', path: 'News-Agent' },
+                { name: 'Paper', path: 'paper' },
+                { name: 'Gemini-Review-Assistant', path: 'Gemini-Review-Assistant' },
+                { name: 'SZU_Sports', path: 'SZU_Sports'}
+            ];
+
+            files.forEach(file => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                if (githubUsername !== 'your_username' && repositoryName !== 'https://your_repository_name') { // 此处的 'https://your_repository_name' 是一个占位符字符串
+                    link.href = `${repositoryName}/${file.path}`;
+                } else {
+                    link.href = `#`;
+                }
+                link.textContent = file.name;
+                // link.target = '_blank'; // 在新标签页打开
+                listItem.appendChild(link);
+                fileListContainer.appendChild(listItem);
+            });
+        }
+
+
+        // 页面加载时检查登录状态
+        (function checkLoginOnLoad() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                const loginSection = document.getElementById('login-section');
+                const fileLinksSection = document.getElementById('file-links');
+                const loginError = document.getElementById('login-error');
+
+                if (loginSection && fileLinksSection && loginError) {
+                    loginError.style.display = 'none';
+                    loginSection.style.display = 'none';
+                    fileLinksSection.style.display = 'block';
+                    displayFileLinks();
+                }
+            }
+        })();
+    </script>
+</body>
 </html>
