@@ -68,9 +68,9 @@
             /* 在所有屏幕上使用百分比宽度，限制最大宽度 */
             width: fit-content;
             /* 让容器宽度适应内容，配合 max-width */
-            padding: 20px;
+            padding: 30px;
             /* 内边距 */
-            margin-top: 40px;
+            margin-top: 60px;
             /* 顶部外边距，与视口顶部保持距离 */
             margin-right: 40px;
             /* 右侧外边距，与视口右侧保持距离 */
@@ -85,8 +85,8 @@
         }
 
         blockquote {
-            margin: 0 0 20px 0; /* 为下方元素留出间距 */
-            padding: 20px;
+            margin: 0 0 30px 0; /* 为下方元素留出间距 */
+            padding: 25px;
             /*内边距 */
             border-left: 5px solid #87CEFA; /* 改为左边框，并使用主题强调色 */
             /* border-right: 5px solid #ccc; */ /* 移除原有右边框 */
@@ -120,8 +120,8 @@
 
         /* --- 登录表单样式 --- */
         .login-form {
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 40px;
+            padding: 25px;
             background-color: rgba(0, 0, 0, 0.35); /* 稍微调整透明度 */
             border-radius: 8px;
             text-align: left;
@@ -137,7 +137,7 @@
 
         .login-form label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #ddd;
         }
 
@@ -145,10 +145,10 @@
         .login-form input[type="password"] {
             width: 100%; /* 修改：确保输入框占据100%宽度 */
             padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #555;
+            margin-bottom: 20px;
+            border: 1px solid #666;
             border-radius: 4px;
-            background-color: #333;
+            background-color: #282828;
             color: #fff;
             box-sizing: border-box;
             transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
@@ -157,14 +157,15 @@
         .login-form input[type="text"]:focus,
         .login-form input[type="password"]:focus {
             border-color: #87CEFA; /* 焦点时边框高亮 */
-            box-shadow: 0 0 8px rgba(135, 206, 250, 0.5); /* 焦点时添加光晕效果 */
+            box-shadow: 0 0 10px rgba(135, 206, 250, 0.6); /* 焦点时添加光晕效果 */
             outline: none; /* 移除默认的浏览器轮廓 */
         }
 
         .login-form button {
             padding: 10px 20px;
-            background-color: #5cb85c;
-            color: white;
+            background-color: #87CEFA;
+            color: #111;
+            font-weight: bold;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -176,20 +177,25 @@
         }
 
         .login-form button:hover {
-            background-color: #4cae4c;
+            background-color: #76bde0;
             transform: translateY(-2px); /* 悬停时轻微上移 */
         }
 
         #login-error {
-            color: #ff6b6b;
-            margin-top: 15px; /* 修改：将 10px 调整为 15px 以保持一致性 */
+            color: #ff8a8a;
+            margin-top: 20px;
             text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            border: 1px solid #ff6b6b;
+            border-radius: 4px;
+            background-color: rgba(255, 107, 107, 0.1);
         }
 
         /* --- 文件链接样式 --- */
         #file-links {
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 40px;
+            padding: 25px;
             background-color: rgba(255, 255, 255, 0.12); /* 稍微调整透明度 */
             border-radius: 8px;
             text-align: left;
@@ -208,7 +214,7 @@
         }
 
         #file-links li { /* 为列表项添加样式 */
-            margin-bottom: 10px; /* 增加列表项之间的间距 */
+            margin-bottom: 12px; /* 增加列表项之间的间距 */
         }
 
         #file-links li:last-child { /* 移除最后一个列表项的下边距 */
@@ -216,20 +222,21 @@
         }
 
         #file-links li a {
-            color: #87CEFA;
+            color: #6BB9F0;
             /* 淡蓝色 */
             text-decoration: none;
             font-size: 1.1rem;
             display: block;
-            padding: 10px 8px; /* 调整内边距使点击区域更舒适 */
+            padding: 12px 10px; /* 调整内边距使点击区域更舒适 */
             border-radius: 4px; /* 为链接添加圆角 */
-            transition: background-color 0.3s ease, color 0.3s ease; /* 添加过渡效果 */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* 添加过渡效果 */
         }
 
         #file-links li a:hover {
             /* text-decoration: underline; */ /* 可以移除下划线，通过背景色变化强调 */
             color: #ffffff; /* 悬停时文字颜色变亮 */
-            background-color: rgba(135, 206, 250, 0.25); /* 悬停时添加淡蓝色背景 */
+            background-color: rgba(135, 206, 250, 0.35); /* 悬停时添加淡蓝色背景 */
+            transform: translateX(3px);
         }
 
 
@@ -259,13 +266,20 @@
                 /* 减小字体大小 */
                 padding: 15px;
                 /* 减小内边距 */
-                border-right-width: 4px;
-                /* 减小边框宽度 */
+                border-left-width: 4px;
+                border-right-width: 0; /* Or none, ensuring only left border is active */
                 /* border-right: none; */
                 /* 如果居中，可能不需要边框 */
                 /* border-left: 4px solid #ccc; */
                 /* 如果居中，换回左边框 */
             }
+
+            /* Add styles for login-form and file-links if they need adjustments for tablet */
+            /* For example:
+            .login-form, #file-links {
+                padding: 20px; // Adjust padding if necessary
+            }
+            */
         }
 
         /* 小型屏幕（例如：手机） */
@@ -301,8 +315,13 @@
                 /* 居中时通常移除左右边框或使用上下边框 */
                 border-right: none;
                 border-left: none;
+                text-align: center; /* Align text to center for mobile */
                 /* border-top: 3px solid #ccc; */
                 /* border-bottom: 3px solid #ccc; */
+            }
+
+            .login-form, #file-links { /* Reduce padding for login form and file links on mobile */
+                padding: 20px;
             }
         }
     </style>
