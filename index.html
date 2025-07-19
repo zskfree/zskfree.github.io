@@ -4,311 +4,439 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>生如夏花</title> <!-- 浏览器标签页标题 -->
+    <title>生如夏花</title>
     <style>
+        :root {
+            --primary-color: #87CEFA;
+            --secondary-color: #4A90E2;
+            --accent-color: #5cb85c;
+            --text-primary: #ffffff;
+            --text-secondary: #e8e8e8;
+            --text-muted: #b8b8b8;
+            --background-overlay: rgba(0, 0, 0, 0.6);
+            --card-background: rgba(255, 255, 255, 0.1);
+            --card-background-dark: rgba(0, 0, 0, 0.3);
+            --border-radius: 12px;
+            --border-radius-small: 6px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-2xl: 2rem;
+            --line-height-tight: 1.4;
+            --line-height-normal: 1.6;
+            --line-height-relaxed: 1.8;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.25);
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         html {
             height: 100%;
-            /* 确保 html 元素占据整个视口高度 */
         }
 
         body {
             margin: 0;
-            /* 移除 body 的默认外边距 */
             padding: 0;
-            /* 移除 body 的默认内边距 */
-            color: #fff;
-            /* 设置默认文字颜色为白色 */
             min-height: 100vh;
-            /* 设置 body 的最小高度为视口高度 */
-            /* 设置备用字体栈，优先使用系统默认字体 */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei", sans-serif;
-            display: flex;
-            /* 使用 Flexbox 布局 */
-            align-items: flex-start;
-            /* 垂直对齐方式：顶部对齐 */
-            justify-content: flex-end;
-            /* 水平对齐方式：右侧对齐 */
-            /* 设置背景图片 */
-            background-image: url('本杰明巴顿奇事.jpg');
-            /* 背景图片路径 */
-            background-size: cover;
-            /* 背景图片覆盖整个容器 */
-            background-position: center;
-            /* 背景图片居中显示 */
-            background-repeat: no-repeat;
-            /* 背景图片不重复平铺 */
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            color: var(--text-primary);
             position: relative;
-            /* 设置相对定位，为伪元素定位提供基准 */
-            z-index: 1;
-            /* 确保 body 内容在伪元素之上 */
-            /* 确保即使内容很少，背景也能覆盖 */
-            background-attachment: fixed;
-            /* 背景图片固定，不随滚动条滚动 */
+            display: grid;
+            place-items: center;
+            padding: var(--spacing-md);
+            overflow-x: hidden;
         }
 
-        /* 添加半透明黑色叠加层，增强文本可读性 */
+        /* Enhanced background with multiple layers for better integration */
         body::before {
             content: "";
-            /* 伪元素必须设置 content 属性 */
-            position: absolute;
-            /* 绝对定位，相对于 body */
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            /* 覆盖整个 body 区域 */
-            background-color: rgba(0, 0, 0, 0.5);
-            /* 半透明黑色背景 */
+            background-image: url('本杰明巴顿奇事.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* Apply filters to improve image quality and integration */
+            filter: blur(1px) contrast(1.1) saturate(0.8) brightness(0.7);
+            z-index: -3;
+        }
+
+        /* Gradient overlay for better content readability */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.7) 0%,
+                    rgba(0, 0, 0, 0.5) 25%,
+                    rgba(0, 0, 0, 0.6) 50%,
+                    rgba(0, 0, 0, 0.8) 100%);
+            z-index: -2;
+        }
+
+        /* Additional artistic overlay for cohesive design */
+        .background-enhancement {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(135, 206, 250, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 30%, rgba(135, 206, 250, 0.05) 70%);
             z-index: -1;
-            /* 将叠加层置于 body 内容之后 */
+            pointer-events: none;
+        }
+
+        /* Fallback background for when image fails to load or is poor quality */
+        @supports not (backdrop-filter: blur(10px)) {
+            body::before {
+                background-image: none;
+                background: linear-gradient(135deg,
+                        #1a1a2e 0%,
+                        #16213e 25%,
+                        #0f3460 50%,
+                        #533483 100%);
+            }
+        }
+
+        /* Alternative background pattern overlay for texture */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image:
+                repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.1) 2px,
+                    rgba(255, 255, 255, 0.1) 4px);
+            z-index: -1;
+            pointer-events: none;
+            mix-blend-mode: overlay;
         }
 
         .container {
-            max-width: 90%;
-            /* 在所有屏幕上使用百分比宽度，限制最大宽度 */
-            width: fit-content;
-            /* 让容器宽度适应内容，配合 max-width */
-            padding: 20px;
-            /* 内边距 */
-            margin-top: 40px;
-            /* 顶部外边距，与视口顶部保持距离 */
-            margin-right: 40px;
-            /* 右侧外边距，与视口右侧保持距离 */
-            text-align: right;
-            /* 容器内文本右对齐 */
+            width: 100%;
+            max-width: 600px;
+            padding: var(--spacing-lg);
+            text-align: center;
             opacity: 0;
-            /* 初始状态透明 */
-            animation: fadeIn 1.5s ease forwards;
-            /* 应用淡入动画 */
-            box-sizing: border-box;
-            /* 让 padding 和 border 不会增加容器的总宽度 */
+            animation: fadeInUp 1s var(--transition-normal) forwards;
         }
 
         blockquote {
-            margin: 0 0 20px 0; /* 为下方元素留出间距 */
-            padding: 20px;
-            /*内边距 */
-            border-left: 5px solid #87CEFA; /* 改为左边框，并使用主题强调色 */
-            /* border-right: 5px solid #ccc; */ /* 移除原有右边框 */
-            font-size: 1.6rem;
-            /*引文文字大小 - 桌面端 */
-            line-height: 1.8;
-            /*引文行高 */
-            color: #eee;
-            /*引文文字颜色 */
-            text-align: left; /* 确保引文文本左对齐以提高可读性 */
-            background-color: rgba(0, 0, 0, 0.15); /* 为引文块添加非常浅的背景色以区分 */
-            border-radius: 4px; /* 轻微的圆角 */
+            margin: 0 0 var(--spacing-md) 0;
+            padding: var(--spacing-md);
+            border-left: 2px solid rgba(135, 206, 250, 0.3);
+            font-size: var(--font-size-sm);
+            font-weight: 300;
+            line-height: var(--line-height-normal);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: left;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--border-radius-small);
+            backdrop-filter: blur(5px);
+            box-shadow: none;
+            position: relative;
+            overflow: hidden;
+            font-style: italic;
+            letter-spacing: 0.3px;
         }
 
-        /* 可以为引文来源添加样式 */
-        /* cite {
-                display: block; // 块级显示
-                margin-top: 10px; // 顶部外边距
-                font-style: normal; // 正常字体样式
-                color: #aaa; // 字体颜色
-                font-size: 1rem; // 字体大小
-            } */
+        blockquote::before {
+            content: "" ";
+ position: absolute;
+            top: -5px;
+            left: 8px;
+            font-size: 3rem;
+            color: rgba(135, 206, 250, 0.15);
+            font-family: Georgia, serif;
+            line-height: 1;
+            pointer-events: none;
+        }
 
-        /* 定义淡入动画 */
-        @keyframes fadeIn {
+        blockquote::after {
+            content: "" ";
+ position: absolute;
+            bottom: -15px;
+            right: 8px;
+            font-size: 3rem;
+            color: rgba(135, 206, 250, 0.15);
+            font-family: Georgia, serif;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        blockquote:hover {
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: rgba(135, 206, 250, 0.5);
+            transition: all var(--transition-normal);
+        }
+
+        blockquote:hover::before,
+        blockquote:hover::after {
+            color: rgba(135, 206, 250, 0.25);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
             to {
                 opacity: 1;
-                /* 最终状态不透明 */
+                transform: translateY(0);
             }
         }
 
         /* --- 登录表单样式 --- */
         .login-form {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.35); /* 稍微调整透明度 */
-            border-radius: 8px;
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: var(--card-background-dark);
+            border-radius: var(--border-radius);
             text-align: left;
-            /* 表单内文本左对齐 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* 添加柔和的阴影 */
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .login-form h3 {
             margin-top: 0;
-            color: #eee;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
             text-align: center;
+            font-size: var(--font-size-lg);
+            font-weight: 600;
         }
 
         .login-form label {
             display: block;
-            margin-bottom: 8px;
-            color: #ddd;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
         }
 
         .login-form input[type="text"],
         .login-form input[type="password"] {
-            width: 100%; /* 修改：确保输入框占据100%宽度 */
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #555;
-            border-radius: 4px;
-            background-color: #333;
-            color: #fff;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+            width: 100%;
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius-small);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+            transition: all var(--transition-normal);
+            backdrop-filter: blur(5px);
         }
 
         .login-form input[type="text"]:focus,
         .login-form input[type="password"]:focus {
-            border-color: #87CEFA; /* 焦点时边框高亮 */
-            box-shadow: 0 0 8px rgba(135, 206, 250, 0.5); /* 焦点时添加光晕效果 */
-            outline: none; /* 移除默认的浏览器轮廓 */
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(135, 206, 250, 0.2);
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .login-form button {
-            padding: 10px 20px;
-            background-color: #5cb85c;
-            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: linear-gradient(135deg, var(--accent-color) 0%, #4a9f4a 100%);
+            color: var(--text-primary);
             border: none;
-            border-radius: 4px;
+            border-radius: var(--border-radius-small);
             cursor: pointer;
-            font-size: 1rem;
+            font-size: var(--font-size-base);
+            font-weight: 600;
             display: block;
             width: 100%;
-            box-sizing: border-box;
-            transition: background-color 0.3s ease, transform 0.2s ease; /* 添加过渡效果 */
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
         }
 
         .login-form button:hover {
-            background-color: #4cae4c;
-            transform: translateY(-2px); /* 悬停时轻微上移 */
+            background: linear-gradient(135deg, #4a9f4a 0%, var(--accent-color) 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .login-form button:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
         }
 
         #login-error {
             color: #ff6b6b;
-            margin-top: 15px; /* 修改：将 10px 调整为 15px 以保持一致性 */
+            margin-top: var(--spacing-md);
             text-align: center;
+            font-size: var(--font-size-sm);
+            padding: var(--spacing-xs);
+            border-radius: var(--border-radius-small);
+            background: rgba(255, 107, 107, 0.1);
         }
 
-        /* --- 文件链接样式 --- */
         #file-links {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.12); /* 稍微调整透明度 */
-            border-radius: 8px;
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: var(--card-background);
+            border-radius: var(--border-radius);
             text-align: left;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* 添加柔和的阴影 */
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         #file-links h3 {
             margin-top: 0;
-            color: #eee;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
         }
 
         #file-links ul {
             list-style: none;
             padding: 0;
-            margin: 0; /* 移除默认的 ul 外边距 */
+            margin: 0;
         }
 
-        #file-links li { /* 为列表项添加样式 */
-            margin-bottom: 10px; /* 增加列表项之间的间距 */
+        #file-links li {
+            margin-bottom: var(--spacing-sm);
         }
 
-        #file-links li:last-child { /* 移除最后一个列表项的下边距 */
+        #file-links li:last-child {
             margin-bottom: 0;
         }
 
         #file-links li a {
-            color: #87CEFA;
-            /* 淡蓝色 */
+            color: var(--primary-color);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: var(--font-size-lg);
             display: block;
-            padding: 10px 8px; /* 调整内边距使点击区域更舒适 */
-            border-radius: 4px; /* 为链接添加圆角 */
-            transition: background-color 0.3s ease, color 0.3s ease; /* 添加过渡效果 */
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius-small);
+            transition: all var(--transition-normal);
+            border: 1px solid transparent;
         }
 
         #file-links li a:hover {
-            /* text-decoration: underline; */ /* 可以移除下划线，通过背景色变化强调 */
-            color: #ffffff; /* 悬停时文字颜色变亮 */
-            background-color: rgba(135, 206, 250, 0.25); /* 悬停时添加淡蓝色背景 */
+            color: var(--text-primary);
+            background: rgba(135, 206, 250, 0.2);
+            border-color: var(--primary-color);
+            transform: translateX(4px);
         }
 
 
-        /* --- 响应式设计 --- */
-
-        /* 中等屏幕（例如：平板电脑） */
         @media (max-width: 768px) {
-            /* 在平板上可以考虑居中对齐 */
-            /* body {
-                align-items: center;
-                justify-content: center;
-            } */
-
             .container {
-                margin-top: 30px;
-                /* 减小顶部外边距 */
-                margin-right: 30px;
-                /* 减小右侧外边距 */
-                /* text-align: center; */
-                /* 如果 body 居中，文本也居中 */
-                max-width: 90%;
-                /* 确保容器不会太宽 */
+                max-width: 95%;
+                padding: var(--spacing-md);
             }
 
             blockquote {
-                font-size: 1.6rem;
-                /* 减小字体大小 */
-                padding: 15px;
-                /* 减小内边距 */
-                border-right-width: 4px;
-                /* 减小边框宽度 */
-                /* border-right: none; */
-                /* 如果居中，可能不需要边框 */
-                /* border-left: 4px solid #ccc; */
-                /* 如果居中，换回左边框 */
+                font-size: var(--font-size-sm);
+                padding: var(--spacing-sm);
+                margin-bottom: var(--spacing-sm);
+            }
+
+            blockquote::before,
+            blockquote::after {
+                font-size: 2rem;
+            }
+
+            .login-form,
+            #file-links {
+                padding: var(--spacing-md);
+            }
+
+            /* Adjust background for mobile */
+            body::before {
+                filter: blur(2px) contrast(1.2) saturate(0.7) brightness(0.6);
+            }
+
+            body::after {
+                background: linear-gradient(135deg,
+                        rgba(0, 0, 0, 0.8) 0%,
+                        rgba(0, 0, 0, 0.6) 25%,
+                        rgba(0, 0, 0, 0.7) 50%,
+                        rgba(0, 0, 0, 0.85) 100%);
             }
         }
 
-        /* 小型屏幕（例如：手机） */
         @media (max-width: 480px) {
-            body {
-                /* 在手机上通常居中显示更好 */
-                align-items: center;
-                /* 垂直居中 */
-                justify-content: center;
-                /* 水平居中 */
-            }
-
             .container {
-                margin-top: 20px;
-                /* 进一步减小顶部外边距 */
-                margin-right: 0;
-                /* 移除右侧外边距，因为已经水平居中 */
-                margin-left: 0;
-                /* 移除左侧外边距 */
-                padding: 15px;
-                /* 减小内边距 */
-                text-align: center;
-                /* 文本居中 */
-                max-width: 90%;
-                /* 限制最大宽度 */
+                max-width: 100%;
+                padding: var(--spacing-sm);
             }
 
             blockquote {
-                font-size: 1.2rem;
-                /* 进一步减小字体大小 */
-                padding: 10px;
-                /* 进一步减小内边距 */
-                /* 居中时通常移除左右边框或使用上下边框 */
-                border-right: none;
-                border-left: none;
-                /* border-top: 3px solid #ccc; */
-                /* border-bottom: 3px solid #ccc; */
+                font-size: var(--font-size-sm);
+                padding: var(--spacing-xs);
+                margin-bottom: var(--spacing-xs);
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            blockquote::before,
+            blockquote::after {
+                font-size: 1.5rem;
+                opacity: 0.8;
+            }
+
+            .login-form,
+            #file-links {
+                padding: var(--spacing-sm);
+            }
+
+            #file-links li a {
+                font-size: var(--font-size-base);
+            }
+
+            /* Further enhance background for small screens */
+            body::before {
+                filter: blur(3px) contrast(1.3) saturate(0.6) brightness(0.5);
+                background-attachment: scroll;
+                /* Better performance on mobile */
+            }
+
+            .texture-overlay {
+                opacity: 0.02;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="background-enhancement"></div>
+    <div class="texture-overlay"></div>
     <main class="container">
         <!-- 页面主要内容容器 -->
 
@@ -319,8 +447,8 @@
 
         </blockquote>
 
-        <!-- 在这里可以添加其他内容 -->
         <div id="login-section" class="login-form">
+            <h3>登录</h3>
             <label for="username">用户名:</label>
             <input type="text" id="username" name="username" required>
 
@@ -380,26 +508,22 @@
             const fileListContainer = document.querySelector('#file-links ul');
             fileListContainer.innerHTML = ''; // 清空现有链接
 
-            const githubUsername = 'zskksz'; // 例如 'octocat'
-            const repositoryName = 'https://www.zskksz.asia'; // 修改这里，添加 https://，并更新示例注释以保持一致性
+            const githubUsername = 'zskksz';
+            const repositoryName = 'https://www.zskksz.asia';
 
             const files = [
                 { name: 'News-Agent', path: 'News-Agent' },
                 { name: 'Paper', path: 'paper' },
                 { name: 'Gemini-Review-Assistant', path: 'Gemini-Review-Assistant' },
-                { name: 'SZU_Sports', path: 'SZU_Sports'}
+                { name: 'SZU_Sports', path: 'SZU_Sports' }
             ];
 
             files.forEach(file => {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
-                if (githubUsername !== 'your_username' && repositoryName !== 'https://your_repository_name') { // 此处的 'https://your_repository_name' 是一个占位符字符串
-                    link.href = `${repositoryName}/${file.path}`;
-                } else {
-                    link.href = `#`;
-                }
+                link.href = `${repositoryName}/${file.path}`;
                 link.textContent = file.name;
-                // link.target = '_blank'; // 在新标签页打开
+                link.target = '_blank';
                 listItem.appendChild(link);
                 fileListContainer.appendChild(listItem);
             });
@@ -424,4 +548,5 @@
         })();
     </script>
 </body>
+
 </html>
