@@ -494,7 +494,7 @@
                 loginError.style.display = 'none';
                 loginSection.style.display = 'none';
                 fileLinksSection.style.display = 'block';
-                localStorage.setItem('isLoggedIn', 'true'); // 保存登录状态
+                sessionStorage.setItem('isLoggedIn', 'true'); // 保存登录状态
                 displayFileLinks();
             } else {
                 loginError.textContent = '用户名或密码错误。';
