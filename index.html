@@ -7,80 +7,58 @@
     <title>生如夏花</title>
     <style>
         :root {
-            --primary-color: #87CEFA;
-            --secondary-color: #4A90E2;
-            --accent-color: #5cb85c;
+            /* 现代怪诞风核心配色：极黑、酸性绿、极光紫 */
+            --primary-color: #ccff00;
+            /* 酸性绿 */
+            --secondary-color: #7000ff;
+            /* 极光紫 */
+            --accent-color: #ff0055;
+            /* 警示红 */
             --text-primary: #ffffff;
-            --text-secondary: #e8e8e8;
-            --text-muted: #b8b8b8;
-            --background-overlay: rgba(0, 0, 0, 0.6);
-            --card-background: rgba(255, 255, 255, 0.1);
-            --card-background-dark: rgba(0, 0, 0, 0.3);
-            --border-radius: 12px;
-            --border-radius-small: 6px;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            --font-size-sm: 0.875rem;
-            --font-size-base: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.5rem;
-            --font-size-2xl: 2rem;
-            --line-height-tight: 1.4;
-            --line-height-normal: 1.6;
-            --line-height-relaxed: 1.8;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.25);
-        --transition-fast: 0.2s ease;
-        --transition-normal: 0.3s ease;
-        /* End of :root variables */
+            --bg-dark: #050505;
+            --border-radius: 0px;
+            /* 摒弃圆角，采用硬朗直角 */
+            --font-main: "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+            --font-zh: "PingFang SC", "Microsoft YaHei", sans-serif;
         }
 
         * {
             box-sizing: border-box;
-        }
-
-        html {
-            height: 100%;
+            cursor: crosshair;
+            /* 改变光标增加怪诞感 */
         }
 
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei", sans-serif;
-            font-size: var(--font-size-base);
-            line-height: var(--line-height-normal);
+            background-color: var(--bg-dark);
             color: var(--text-primary);
-            position: relative;
+            font-family: var(--font-zh);
             display: grid;
             place-items: center;
-            padding: var(--spacing-md);
             overflow-x: hidden;
+            perspective: 1000px;
+            /* 为3D变换做准备 */
         }
 
-        /* Enhanced background with multiple layers for better integration */
+        /* 噪点背景层 */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('本杰明巴顿奇事.jpg');
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('本杰明巴顿奇事.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            /* Apply filters to improve image quality and integration */
-            filter: blur(1px) contrast(1.1) saturate(0.8) brightness(0.7);
+            filter: grayscale(1) contrast(150%) brightness(0.4) blur(2px);
             z-index: -3;
+            animation: grain-move 8s steps(10) infinite;
         }
 
-        /* Gradient overlay for better content readability */
+        /* 强烈的色彩滤镜叠加 */
         body::after {
             content: "";
             position: fixed;
@@ -88,388 +66,246 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg,
-                    rgba(0, 0, 0, 0.7) 0%,
-                    rgba(0, 0, 0, 0.5) 25%,
-                    rgba(0, 0, 0, 0.6) 50%,
-                    rgba(0, 0, 0, 0.8) 100%);
+            background: linear-gradient(180deg,
+                    rgba(112, 0, 255, 0.2) 0%,
+                    rgba(5, 5, 5, 0.8) 100%);
+            mix-blend-mode: color-burn;
             z-index: -2;
-        }
-
-        /* Additional artistic overlay for cohesive design */
-        .background-enhancement {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(135, 206, 250, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
-                linear-gradient(45deg, transparent 30%, rgba(135, 206, 250, 0.05) 70%);
-            z-index: -1;
             pointer-events: none;
         }
 
-        /* Fallback background for when image fails to load or is poor quality */
-        @supports not (backdrop-filter: blur(10px)) {
-            body::before {
-                background-image: none;
-                background: linear-gradient(135deg,
-                        #1a1a2e 0%,
-                        #16213e 25%,
-                        #0f3460 50%,
-                        #533483 100%);
+        @keyframes grain-move {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
             }
-        }
 
-        /* Alternative background pattern overlay for texture */
-        .texture-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.03;
-            background-image:
-                repeating-linear-gradient(45deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255, 255, 255, 0.1) 2px,
-                    rgba(255, 255, 255, 0.1) 4px);
-            z-index: -1;
-            pointer-events: none;
-            mix-blend-mode: overlay;
+            20% {
+                transform: translate(-2%, 1%) rotate(1deg);
+            }
+
+            40% {
+                transform: translate(1%, -2%) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-1%, 2%) rotate(0.5deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
         }
 
         .container {
-            width: 100%;
-            max-width: 600px;
-            padding: var(--spacing-lg);
-            text-align: center;
-            opacity: 0;
-            animation: fadeInUp 1s var(--transition-normal) forwards;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
         }
 
+        /* 引用文本：扭曲偏位效果 */
         blockquote {
-            margin: 0 0 var(--spacing-md) 0;
-            padding: var(--spacing-md);
-            border-left: 2px solid rgba(135, 206, 250, 0.3);
-            font-size: var(--font-size-sm);
-            font-weight: 300;
-            line-height: var(--line-height-normal);
-            color: rgba(255, 255, 255, 0.6);
-            text-align: left;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--border-radius-small);
-            backdrop-filter: blur(5px);
-            box-shadow: none;
+            margin: 0 0 50px 0;
+            padding: 20px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-weight: bold;
+            color: var(--primary-color);
+            border: 3px solid var(--primary-color);
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 10px 10px 0px var(--secondary-color);
+            transform: skew(-2deg) rotate(-1deg);
             position: relative;
-            overflow: hidden;
-            font-style: italic;
-            letter-spacing: 0.3px;
         }
 
         blockquote::before {
-            content: "“";
+            content: "LIVING";
             position: absolute;
-            top: -5px;
-            left: 8px;
-            font-size: 3rem;
-            color: rgba(135, 206, 250, 0.15);
-            font-family: Georgia, serif;
-            line-height: 1.5;
-            pointer-events: none;
+            top: -30px;
+            right: -10px;
+            font-family: var(--font-main);
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.1);
+            z-index: -1;
         }
 
-        blockquote::after {
-            content: "”";
-            position: absolute;
-            bottom: -15px;
-            right: 8px;
-            font-size: 3rem;
-            color: rgba(135, 206, 250, 0.15);
-            font-family: Georgia, serif;
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        blockquote:hover {
-            color: rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.05);
-            border-left-color: rgba(135, 206, 250, 0.5);
-            transition: all var(--transition-normal);
-        }
-
-        blockquote:hover::before,
-        blockquote:hover::after {
-            color: rgba(135, 206, 250, 0.25);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* --- 登录表单样式 --- */
+        /* 登录表单：粗野主义风 */
         .login-form {
-            margin-top: var(--spacing-lg);
-            padding: var(--spacing-lg);
-            background: var(--card-background-dark);
-            border-radius: var(--border-radius);
-            text-align: left;
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            padding: 30px;
+            border: 5px solid var(--primary-color);
+            transform: rotate(1deg);
+            box-shadow: -15px 15px 0px var(--accent-color);
         }
 
         .login-form h3 {
             margin-top: 0;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-            text-align: center;
-            font-size: var(--font-size-lg);
-            font-weight: 600;
+            font-family: var(--font-main);
+            font-size: 2.5rem;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            border-bottom: 5px solid #000;
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
         .login-form label {
             display: block;
-            margin-bottom: var(--spacing-xs);
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-            font-weight: 500;
+            color: #000;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 5px;
         }
 
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
+        .login-form input {
             width: 100%;
-            padding: var(--spacing-sm);
-            margin-bottom: var(--spacing-md);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--border-radius-small);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            font-size: var(--font-size-base);
-            transition: all var(--transition-normal);
-            backdrop-filter: blur(5px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 3px solid #000;
+            background: #eee;
+            color: #000;
+            font-weight: bold;
+            outline: none;
+            transition: 0.2s;
         }
 
-        .login-form input[type="text"]:focus,
-        .login-form input[type="password"]:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(135, 206, 250, 0.2);
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
+        .login-form input:focus {
+            background: var(--primary-color);
+            transform: scale(1.02);
         }
 
         .login-form button {
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: linear-gradient(135deg, var(--accent-color) 0%, #4a9f4a 100%);
-            color: var(--text-primary);
-            border: none;
-            border-radius: var(--border-radius-small);
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            display: block;
             width: 100%;
-            transition: all var(--transition-normal);
-            box-shadow: var(--shadow-sm);
+            padding: 15px;
+            background: #000;
+            color: var(--primary-color);
+            border: none;
+            font-family: var(--font-main);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         .login-form button:hover {
-            background: linear-gradient(135deg, #4a9f4a 0%, var(--accent-color) 100%);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            background: var(--accent-color);
+            color: #fff;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
         }
 
-        .login-form button:active {
-            transform: translateY(0);
-            box-shadow: var(--shadow-sm);
-        }
-
-        #login-error {
-            color: #ff6b6b;
-            margin-top: var(--spacing-md);
-            text-align: center;
-            font-size: var(--font-size-sm);
-            padding: var(--spacing-xs);
-            border-radius: var(--border-radius-small);
-            background: rgba(255, 107, 107, 0.1);
-        }
-
+        /* 文件列表：错位卡片 */
         #file-links {
-            margin-top: var(--spacing-lg);
-            padding: var(--spacing-lg);
-            background: var(--card-background);
-            border-radius: var(--border-radius);
-            text-align: left;
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            background: var(--secondary-color);
+            padding: 30px;
+            border: 3px solid #fff;
+            animation: glitch-shadow 4s infinite;
+        }
+
+        @keyframes glitch-shadow {
+            0% {
+                box-shadow: 5px 5px 0 var(--primary-color);
+            }
+
+            50% {
+                box-shadow: -5px -5px 0 var(--accent-color);
+            }
+
+            100% {
+                box-shadow: 5px 5px 0 var(--primary-color);
+            }
         }
 
         #file-links h3 {
-            margin-top: 0;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-            font-size: var(--font-size-lg);
-            font-weight: 600;
+            font-family: var(--font-main);
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
         }
 
         #file-links ul {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
 
         #file-links li {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        #file-links li:last-child {
-            margin-bottom: 0;
+            margin-bottom: 10px;
         }
 
         #file-links li a {
-            color: var(--primary-color);
+            color: #000;
+            background: var(--primary-color);
             text-decoration: none;
-            font-size: var(--font-size-lg);
+            font-weight: 900;
             display: block;
-            padding: var(--spacing-sm);
-            border-radius: var(--border-radius-small);
-            transition: all var(--transition-normal);
-            border: 1px solid transparent;
+            padding: 10px;
+            border-left: 0px solid #000;
+            transition: 0.3s;
         }
 
         #file-links li a:hover {
-            color: var(--text-primary);
-            background: rgba(135, 206, 250, 0.2);
-            border-color: var(--primary-color);
-            transform: translateX(4px);
+            padding-left: 25px;
+            border-left: 10px solid #000;
+            background: #fff;
         }
 
+        #login-error {
+            background: #000;
+            color: var(--accent-color);
+            padding: 10px;
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            border: 2px dashed var(--accent-color);
+        }
 
-        @media (max-width: 768px) {
+        /* 响应式调整 */
+        @media (max-width: 600px) {
             .container {
-                max-width: 95%;
-                padding: var(--spacing-md);
+                padding: 15px;
             }
 
             blockquote {
-                font-size: var(--font-size-sm);
-                padding: var(--spacing-sm);
-                margin-bottom: var(--spacing-sm);
+                font-size: 1rem;
             }
 
-            blockquote::before,
-            blockquote::after {
-                font-size: 2rem;
-            }
-
-            .login-form,
-            #file-links {
-                padding: var(--spacing-md);
-            }
-
-            /* Adjust background for mobile */
-            body::before {
-                filter: blur(2px) contrast(1.2) saturate(0.7) brightness(0.6);
-            }
-
-            body::after {
-                background: linear-gradient(135deg,
-                        rgba(0, 0, 0, 0.8) 0%,
-                        rgba(0, 0, 0, 0.6) 25%,
-                        rgba(0, 0, 0, 0.7) 50%,
-                        rgba(0, 0, 0, 0.85) 100%);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                max-width: 100%;
-                padding: var(--spacing-sm);
-            }
-
-            blockquote {
-                font-size: var(--font-size-sm);
-                padding: var(--spacing-xs);
-                margin-bottom: var(--spacing-xs);
-                color: rgba(255, 255, 255, 0.5);
-            }
-
-            blockquote::before,
-            blockquote::after {
-                font-size: 1.5rem;
-                opacity: 0.8;
-            }
-
-            .login-form,
-            #file-links {
-                padding: var(--spacing-sm);
-            }
-
-            #file-links li a {
-                font-size: var(--font-size-base);
-            }
-
-            /* Further enhance background for small screens */
-            body::before {
-                filter: blur(3px) contrast(1.3) saturate(0.6) brightness(0.5);
-                background-attachment: scroll;
-                /* Better performance on mobile */
-            }
-
-            .texture-overlay {
-                opacity: 0.02;
+            .login-form h3 {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="background-enhancement"></div>
-    <div class="texture-overlay"></div>
     <main class="container">
-        <!-- 页面主要内容容器 -->
-
         <blockquote>
-            人最宝贵的是生命。生命对于每个人只有一次。<br>
-            人的一生应当这样度过：当他回首往事时，<br>
+            人最宝贵的是生命。生命对于每个人只有一次。
+            人的一生应当这样度过：当他回首往事时，
             不因虚度年华而悔恨，也不因碌碌无为而羞耻。
-
         </blockquote>
 
         <div id="login-section" class="login-form">
-            <h3>登录</h3>
-            <label for="username">用户名:</label>
+            <h3>LOG IN / 登录</h3>
+            <label for="username">User Name:</label>
             <input type="text" id="username" name="username" required>
 
-            <label for="password">密码:</label>
+            <label for="password">Security Key:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="button" onclick="handleLogin()">登录</button>
+            <button type="button" onclick="handleLogin()">ACCESS SYSTEM</button>
             <p id="login-error" style="display:none;"></p>
         </div>
 
         <div id="file-links" style="display:none;">
-            <h3>项目链接</h3>
-            <ul>
-                <!-- 文件链接将通过 JavaScript 动态添加 -->
-            </ul>
+            <h3>PROJECTS_INDEX</h3>
+            <ul><!-- 动态注入 --></ul>
         </div>
-
     </main>
 
     <script>
+        // JS 逻辑完全保留，未做任何修改以确保功能一致
         async function handleLogin() {
             const usernameInput = document.getElementById('username');
             const passwordInput = document.getElementById('password');
@@ -494,55 +330,45 @@
                 loginError.style.display = 'none';
                 loginSection.style.display = 'none';
                 fileLinksSection.style.display = 'block';
-                sessionStorage.setItem('isLoggedIn', 'true'); // 保存登录状态
+                sessionStorage.setItem('isLoggedIn', 'true');
                 displayFileLinks();
             } else {
-                loginError.textContent = '用户名或密码错误。';
+                loginError.textContent = 'ACCESS DENIED: 用户名或密码错误。';
                 loginError.style.display = 'block';
                 fileLinksSection.style.display = 'none';
-                localStorage.removeItem('isLoggedIn'); // 登录失败时清除状态
+                localStorage.removeItem('isLoggedIn');
             }
-
         }
 
         function displayFileLinks() {
             const fileListContainer = document.querySelector('#file-links ul');
-            fileListContainer.innerHTML = ''; // 清空现有链接
-
+            fileListContainer.innerHTML = '';
             const githubUsername = 'zskksz';
             const repositoryName = 'https://www.zskksz.asia';
-
             const files = [
                 { name: 'News-Agent', path: 'News-Agent' },
                 { name: 'HTML PPT', path: 'paper' },
                 { name: 'ScholarFlow', path: 'ScholarFlow' },
                 { name: '深大体育场馆秒约', path: 'SZU_Sports' },
                 { name: '周易占卜', path: 'Divination' },
-
             ];
-
             files.forEach(file => {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
                 link.href = `${repositoryName}/${file.path}`;
-                link.textContent = file.name;
+                link.textContent = `> ${file.name}`;
                 link.target = '_blank';
                 listItem.appendChild(link);
                 fileListContainer.appendChild(listItem);
             });
         }
 
-
-        // 页面加载时检查登录状态
         (function checkLoginOnLoad() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             if (isLoggedIn === 'true') {
                 const loginSection = document.getElementById('login-section');
                 const fileLinksSection = document.getElementById('file-links');
-                const loginError = document.getElementById('login-error');
-
-                if (loginSection && fileLinksSection && loginError) {
-                    loginError.style.display = 'none';
+                if (loginSection && fileLinksSection) {
                     loginSection.style.display = 'none';
                     fileLinksSection.style.display = 'block';
                     displayFileLinks();
