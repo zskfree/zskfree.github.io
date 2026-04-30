@@ -7,301 +7,339 @@
     <title>生如夏花</title>
     <style>
         :root {
-            /* 现代怪诞风核心配色：极黑、酸性绿、极光紫 */
-            --primary-color: #ccff00;
-            /* 酸性绿 */
-            --secondary-color: #7000ff;
-            /* 极光紫 */
-            --accent-color: #ff0055;
-            /* 警示红 */
-            --text-primary: #ffffff;
-            --bg-dark: #050505;
-            --border-radius: 0px;
-            /* 摒弃圆角，采用硬朗直角 */
-            --font-main: "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
-            --font-zh: "PingFang SC", "Microsoft YaHei", sans-serif;
+            /* 极简主义配色：克制的灰阶 + 一抹墨色 */
+            --color-bg: #fafaf9;
+            --color-surface: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-muted: #737373;
+            --color-text-subtle: #a3a3a3;
+            --color-border: #e5e5e5;
+            --color-border-strong: #1a1a1a;
+            --color-accent: #1a1a1a;
+            --color-error: #991b1b;
+
+            --space-xs: 8px;
+            --space-sm: 12px;
+            --space-md: 24px;
+            --space-lg: 48px;
+            --space-xl: 80px;
+
+            --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+            --font-mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
         }
 
         * {
             box-sizing: border-box;
-            cursor: crosshair;
-            /* 改变光标增加怪诞感 */
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: var(--font-zh);
-            display: grid;
-            place-items: center;
-            overflow-x: hidden;
-            perspective: 1000px;
-            /* 为3D变换做准备 */
-        }
-
-        /* 噪点背景层 */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url('本杰明巴顿奇事.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(1) contrast(150%) brightness(0.4) blur(2px);
-            z-index: -3;
-            animation: grain-move 8s steps(10) infinite;
-        }
-
-        /* 强烈的色彩滤镜叠加 */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg,
-                    rgba(112, 0, 255, 0.2) 0%,
-                    rgba(5, 5, 5, 0.8) 100%);
-            mix-blend-mode: color-burn;
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        @keyframes grain-move {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            20% {
-                transform: translate(-2%, 1%) rotate(1deg);
-            }
-
-            40% {
-                transform: translate(1%, -2%) rotate(-1deg);
-            }
-
-            60% {
-                transform: translate(-1%, 2%) rotate(0.5deg);
-            }
-
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            font-size: 15px;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         .container {
-            width: 90%;
-            max-width: 500px;
-            padding: 40px;
-            position: relative;
-            z-index: 1;
+            width: 100%;
+            max-width: 480px;
+            padding: var(--space-xl) var(--space-md);
         }
 
-        /* 引用文本：扭曲偏位效果 */
-        blockquote {
-            margin: 0 0 50px 0;
-            padding: 20px;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            font-weight: bold;
-            color: var(--primary-color);
-            border: 3px solid var(--primary-color);
-            background: rgba(0, 0, 0, 0.8);
-            box-shadow: 10px 10px 0px var(--secondary-color);
-            transform: skew(-2deg) rotate(-1deg);
-            position: relative;
-        }
-
-        blockquote::before {
-            content: "LIVING";
-            position: absolute;
-            top: -30px;
-            right: -10px;
-            font-family: var(--font-main);
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.1);
-            z-index: -1;
-        }
-
-        /* 登录表单：粗野主义风 */
-        .login-form {
-            background: #ffffff;
-            padding: 30px;
-            border: 5px solid var(--primary-color);
-            transform: rotate(1deg);
-            box-shadow: -15px 15px 0px var(--accent-color);
-        }
-
-        .login-form h3 {
-            margin-top: 0;
-            font-family: var(--font-main);
-            font-size: 2.5rem;
-            color: #000;
+        /* 顶部标识：极小、低调 */
+        .brand {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            color: var(--color-text-subtle);
             text-transform: uppercase;
-            letter-spacing: -2px;
-            border-bottom: 5px solid #000;
-            display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: var(--space-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .brand::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--color-border);
+        }
+
+        /* 引文：衬线字体，留白充足 */
+        blockquote {
+            margin: 0 0 var(--space-xl) 0;
+            padding: 0;
+            font-family: var(--font-serif);
+            font-size: 18px;
+            line-height: 1.9;
+            color: var(--color-text);
+            font-weight: 400;
+            position: relative;
+        }
+
+        blockquote p {
+            margin: 0 0 var(--space-md) 0;
+        }
+
+        blockquote cite {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-style: normal;
+            color: var(--color-text-muted);
+            letter-spacing: 0.05em;
+            margin-top: var(--space-md);
+        }
+
+        blockquote cite::before {
+            content: "— ";
+        }
+
+        /* 分隔线 */
+        .divider {
+            border: 0;
+            height: 1px;
+            background: var(--color-border);
+            margin: var(--space-lg) 0;
+        }
+
+        /* 登录区：克制的表单 */
+        .login-form {
+            background: transparent;
+        }
+
+        .login-form .section-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-md);
+        }
+
+        .field {
+            margin-bottom: var(--space-md);
         }
 
         .login-form label {
             display: block;
-            color: #000;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 5px;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-xs);
+            letter-spacing: 0.02em;
         }
 
         .login-form input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 3px solid #000;
-            background: #eee;
-            color: #000;
-            font-weight: bold;
+            padding: 10px 0;
+            border: none;
+            border-bottom: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            font-size: 15px;
             outline: none;
-            transition: 0.2s;
+            transition: border-color 0.2s ease;
         }
 
         .login-form input:focus {
-            background: var(--primary-color);
-            transform: scale(1.02);
+            border-bottom-color: var(--color-border-strong);
+        }
+
+        .login-form input::placeholder {
+            color: var(--color-text-subtle);
         }
 
         .login-form button {
             width: 100%;
-            padding: 15px;
-            background: #000;
-            color: var(--primary-color);
-            border: none;
-            font-family: var(--font-main);
-            font-size: 1.5rem;
+            padding: 14px;
+            margin-top: var(--space-sm);
+            background: var(--color-accent);
+            color: var(--color-surface);
+            border: 1px solid var(--color-accent);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
         .login-form button:hover {
-            background: var(--accent-color);
-            color: #fff;
-            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            background: transparent;
+            color: var(--color-accent);
         }
 
-        /* 文件列表：错位卡片 */
+        #login-error {
+            margin-top: var(--space-md);
+            padding: var(--space-sm) 0;
+            font-size: 13px;
+            color: var(--color-error);
+            border-top: 1px solid var(--color-error);
+            text-align: left;
+        }
+
+        /* 文件列表：清晰的层级 */
         #file-links {
-            margin-top: 40px;
-            background: var(--secondary-color);
-            padding: 30px;
-            border: 3px solid #fff;
-            animation: glitch-shadow 4s infinite;
+            margin-top: var(--space-lg);
         }
 
-        @keyframes glitch-shadow {
-            0% {
-                box-shadow: 5px 5px 0 var(--primary-color);
-            }
-
-            50% {
-                box-shadow: -5px -5px 0 var(--accent-color);
-            }
-
-            100% {
-                box-shadow: 5px 5px 0 var(--primary-color);
-            }
-        }
-
-        #file-links h3 {
-            font-family: var(--font-main);
-            font-size: 2rem;
-            color: #fff;
-            margin-bottom: 20px;
+        #file-links .section-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--color-border);
         }
 
         #file-links ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         #file-links li {
-            margin-bottom: 10px;
+            margin: 0;
         }
 
         #file-links li a {
-            color: #000;
-            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--color-text);
             text-decoration: none;
-            font-weight: 900;
-            display: block;
-            padding: 10px;
-            border-left: 0px solid #000;
-            transition: 0.3s;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 15px;
+            transition: padding-left 0.25s ease, color 0.2s ease;
+        }
+
+        #file-links li a::after {
+            content: "→";
+            font-family: var(--font-mono);
+            color: var(--color-text-subtle);
+            transition: transform 0.25s ease, color 0.2s ease;
         }
 
         #file-links li a:hover {
-            padding-left: 25px;
-            border-left: 10px solid #000;
-            background: #fff;
+            padding-left: var(--space-sm);
+            color: var(--color-accent);
         }
 
-        #login-error {
-            background: #000;
-            color: var(--accent-color);
-            padding: 10px;
-            margin-top: 15px;
-            font-weight: bold;
+        #file-links li a:hover::after {
+            transform: translateX(4px);
+            color: var(--color-accent);
+        }
+
+        /* 页脚 */
+        .footer {
+            margin-top: var(--space-xl);
+            padding-top: var(--space-md);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--color-text-subtle);
+            letter-spacing: 0.05em;
             text-align: center;
-            border: 2px dashed var(--accent-color);
         }
 
-        /* 响应式调整 */
+        /* 响应式 */
         @media (max-width: 600px) {
             .container {
-                padding: 15px;
+                padding: var(--space-lg) var(--space-md);
             }
 
             blockquote {
-                font-size: 1rem;
+                font-size: 16px;
+            }
+        }
+
+        /* 微妙的载入动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
             }
 
-            .login-form h3 {
-                font-size: 1.8rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
+
+        .container>* {
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+
+        .brand {
+            animation-delay: 0s;
+        }
+
+        blockquote {
+            animation-delay: 0.1s;
+        }
+
+        .divider {
+            animation-delay: 0.2s;
+        }
+
+        #login-section,
+        #file-links {
+            animation-delay: 0.3s;
         }
     </style>
 </head>
 
 <body>
     <main class="container">
+        <div class="brand">生如夏花</div>
+
         <blockquote>
-            人最宝贵的是生命。生命对于每个人只有一次。
-            人的一生应当这样度过：当他回首往事时，
-            不因虚度年华而悔恨，也不因碌碌无为而羞耻。
+            <p>人最宝贵的是生命。生命对于每个人只有一次。</p>
+            <p>人的一生应当这样度过：当他回首往事时，不因虚度年华而悔恨，也不因碌碌无为而羞耻。</p>
+            <cite>奥斯特洛夫斯基</cite>
         </blockquote>
 
+        <hr class="divider" />
+
         <div id="login-section" class="login-form">
-            <h3>LOG IN / 登录</h3>
-            <label for="username">User Name:</label>
-            <input type="text" id="username" name="username" required>
+            <div class="section-label">Authentication</div>
 
-            <label for="password">Security Key:</label>
-            <input type="password" id="password" name="password" required>
+            <div class="field">
+                <label for="username">用户名 / Username</label>
+                <input type="text" id="username" name="username" autocomplete="username" required>
+            </div>
 
-            <button type="button" onclick="handleLogin()">ACCESS SYSTEM</button>
+            <div class="field">
+                <label for="password">密码 / Password</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" required>
+            </div>
+
+            <button type="button" onclick="handleLogin()">登录 / Sign In</button>
             <p id="login-error" style="display:none;"></p>
         </div>
 
         <div id="file-links" style="display:none;">
-            <h3>PROJECTS_INDEX</h3>
+            <div class="section-label">Projects</div>
             <ul><!-- 动态注入 --></ul>
         </div>
+
+        <div class="footer">© zskksz</div>
     </main>
 
     <script>
@@ -333,7 +371,7 @@
                 sessionStorage.setItem('isLoggedIn', 'true');
                 displayFileLinks();
             } else {
-                loginError.textContent = 'ACCESS DENIED: 用户名或密码错误。';
+                loginError.textContent = '用户名或密码错误';
                 loginError.style.display = 'block';
                 fileLinksSection.style.display = 'none';
                 localStorage.removeItem('isLoggedIn');
@@ -356,7 +394,7 @@
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
                 link.href = `${repositoryName}/${file.path}`;
-                link.textContent = `> ${file.name}`;
+                link.textContent = file.name;
                 link.target = '_blank';
                 listItem.appendChild(link);
                 fileListContainer.appendChild(listItem);
