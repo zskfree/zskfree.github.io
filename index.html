@@ -317,24 +317,7 @@
 
         <hr class="divider" />
 
-        <div id="login-section" class="login-form">
-            <div class="section-label">Authentication</div>
-
-            <div class="field">
-                <label for="username">用户名 / Username</label>
-                <input type="text" id="username" name="username" autocomplete="username" required>
-            </div>
-
-            <div class="field">
-                <label for="password">密码 / Password</label>
-                <input type="password" id="password" name="password" autocomplete="current-password" required>
-            </div>
-
-            <button type="button" onclick="handleLogin()">登录 / Sign In</button>
-            <p id="login-error" style="display:none;"></p>
-        </div>
-
-        <div id="file-links" style="display:none;">
+        <div id="file-links">
             <div class="section-label">Projects</div>
             <ul><!-- 动态注入 --></ul>
         </div>
@@ -343,41 +326,6 @@
     </main>
 
     <script>
-        // JS 逻辑完全保留，未做任何修改以确保功能一致
-        async function handleLogin() {
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            const loginError = document.getElementById('login-error');
-            const fileLinksSection = document.getElementById('file-links');
-            const loginSection = document.getElementById('login-section');
-            const correctUsername = "zskksz";
-            const correctPasswordHash = "4fcd3523bc4f33b3c9e4c40049b7b74d3e1da4a1ab175f16c6f686a6b2c29fc3";
-
-            async function hashPassword(password) {
-                const encoder = new TextEncoder();
-                const data = encoder.encode(password);
-                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-                const hashArray = Array.from(new Uint8Array(hashBuffer));
-                return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-            }
-
-            const enteredUsername = usernameInput.value;
-            const enteredPassword = await hashPassword(passwordInput.value);
-
-            if (enteredUsername === correctUsername && enteredPassword === correctPasswordHash) {
-                loginError.style.display = 'none';
-                loginSection.style.display = 'none';
-                fileLinksSection.style.display = 'block';
-                sessionStorage.setItem('isLoggedIn', 'true');
-                displayFileLinks();
-            } else {
-                loginError.textContent = '用户名或密码错误';
-                loginError.style.display = 'block';
-                fileLinksSection.style.display = 'none';
-                localStorage.removeItem('isLoggedIn');
-            }
-        }
-
         function displayFileLinks() {
             const fileListContainer = document.querySelector('#file-links ul');
             fileListContainer.innerHTML = '';
@@ -388,7 +336,6 @@
                 { name: 'HTML PPT', path: 'paper' },
                 { name: 'ScholarFlow', path: 'ScholarFlow' },
                 { name: '深大体育场馆秒约', path: 'SZU_Sports' },
-                { name: '周易占卜', path: 'Divination' },
             ];
             files.forEach(file => {
                 const listItem = document.createElement('li');
@@ -401,18 +348,7 @@
             });
         }
 
-        (function checkLoginOnLoad() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (isLoggedIn === 'true') {
-                const loginSection = document.getElementById('login-section');
-                const fileLinksSection = document.getElementById('file-links');
-                if (loginSection && fileLinksSection) {
-                    loginSection.style.display = 'none';
-                    fileLinksSection.style.display = 'block';
-                    displayFileLinks();
-                }
-            }
-        })();
+        displayFileLinks();
     </script>
 </body>
 
