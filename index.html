@@ -232,6 +232,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: var(--space-md);
             color: var(--color-text);
             text-decoration: none;
             padding: var(--space-md) 0;
@@ -240,10 +241,28 @@
             transition: padding-left 0.25s ease, color 0.2s ease;
         }
 
+        .project-info {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .project-name {
+            color: var(--color-text);
+        }
+
+        .project-description {
+            color: var(--color-text-muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
         #file-links li a::after {
             content: "→";
             font-family: var(--font-mono);
             color: var(--color-text-subtle);
+            flex: 0 0 auto;
             transition: transform 0.25s ease, color 0.2s ease;
         }
 
@@ -352,17 +371,50 @@
             const githubUsername = 'zskksz';
             const repositoryName = 'https://www.280468.xyz';
             const files = [
-                { name: 'News-Agent', path: 'News-Agent' },
-                { name: 'HTML PPT', path: 'paper' },
-                { name: 'ScholarFlow', path: 'ScholarFlow' },
-                { name: '深大体育场馆秒约', path: 'SZU_Sports' },
+                {
+                    name: 'News-Agent',
+                    path: 'News-Agent',
+                    description: 'AI 新闻聚合与 RSS 情报看板，按 AI、科技、市场主题自动整理资讯。'
+                },
+                {
+                    name: 'HTML PPT',
+                    path: 'paper',
+                    description: '基于 Reveal.js 的在线演示文稿，用于项目展示、数据报告和研究分享。'
+                },
+                {
+                    name: 'ScholarFlow',
+                    path: 'ScholarFlow',
+                    description: 'AI 文献综述自动化工具，支持参考文献匹配和多模型摘要生成。'
+                },
+                {
+                    name: 'PowerTrade Demo',
+                    path: 'PowerTrade/demo_showcase/index.html',
+                    description: '脱敏电力交易展示版，覆盖策略报告、负荷天气分析和未来负荷预测。'
+                },
+                {
+                    name: '深大体育场馆秒约',
+                    path: 'SZU_Sports',
+                    description: '面向 SZU 场馆预约的脚本助手，支持定时抢票、自动重试和状态提醒。'
+                },
             ];
             files.forEach(file => {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
+                const info = document.createElement('span');
+                const name = document.createElement('span');
+                const description = document.createElement('span');
+
+                info.className = 'project-info';
+                name.className = 'project-name';
+                description.className = 'project-description';
+
                 link.href = `${repositoryName}/${file.path}`;
-                link.textContent = file.name;
                 link.target = '_blank';
+                name.textContent = file.name;
+                description.textContent = file.description;
+                info.appendChild(name);
+                info.appendChild(description);
+                link.appendChild(info);
                 listItem.appendChild(link);
                 fileListContainer.appendChild(listItem);
             });
