@@ -29,6 +29,18 @@
             --font-mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
         }
 
+        [data-theme="dark"] {
+            --color-bg: #121212;
+            --color-surface: #1e1e1e;
+            --color-text: #e5e5e5;
+            --color-text-muted: #a3a3a3;
+            --color-text-subtle: #737373;
+            --color-border: #2e2e2e;
+            --color-border-strong: #e5e5e5;
+            --color-accent: #e5e5e5;
+            --color-error: #f87171;
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -50,6 +62,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -75,17 +88,46 @@
             flex: 1;
             height: 1px;
             background: var(--color-border);
+            transition: background 0.3s ease;
         }
 
         .brand-github {
             color: var(--color-text);
             display: flex;
-            transition: transform 0.2s ease, color 0.2s ease;
+            transition: transform 0.2s ease, color 0.3s ease;
         }
 
         .brand-github:hover {
             color: var(--color-accent);
             transform: scale(1.15);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            cursor: pointer;
+            display: flex;
+            padding: 0;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--color-accent);
+            transform: scale(1.15);
+        }
+
+        .theme-toggle .icon-sun,
+        .theme-toggle .icon-moon {
+            display: none;
+        }
+
+        :root:not([data-theme="dark"]) .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-sun {
+            display: block;
         }
 
         /* 引文：衬线字体，留白充足 */
@@ -98,6 +140,7 @@
             color: var(--color-text);
             font-weight: 400;
             position: relative;
+            transition: color 0.3s ease;
         }
 
         blockquote p {
@@ -112,6 +155,7 @@
             color: var(--color-text-muted);
             letter-spacing: 0.05em;
             margin-top: var(--space-md);
+            transition: color 0.3s ease;
         }
 
         blockquote cite::before {
@@ -124,6 +168,7 @@
             height: 1px;
             background: var(--color-border);
             margin: var(--space-lg) 0;
+            transition: background 0.3s ease;
         }
 
         /* 登录区：克制的表单 */
@@ -216,6 +261,7 @@
             margin-bottom: var(--space-md);
             padding-bottom: var(--space-sm);
             border-bottom: 1px solid var(--color-border);
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         #file-links ul {
@@ -238,7 +284,7 @@
             padding: var(--space-md) 0;
             border-bottom: 1px solid var(--color-border);
             font-size: 15px;
-            transition: padding-left 0.25s ease, color 0.2s ease;
+            transition: padding-left 0.25s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         .project-info {
@@ -285,6 +331,7 @@
             color: var(--color-text-subtle);
             letter-spacing: 0.05em;
             text-align: center;
+            transition: color 0.3s ease;
         }
 
         /* 响应式 */
@@ -339,6 +386,22 @@
         <div class="brand">
             <span>生如夏花</span>
             <div class="brand-line"></div>
+            <button class="theme-toggle" title="切换主题">
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
             <a href="https://github.com/zskfree" target="_blank" class="brand-github" title="GitHub Profile">
                 <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
                     <path fill-rule="evenodd"
@@ -365,6 +428,29 @@
     </main>
 
     <script>
+        // 暗色模式切换
+        (function () {
+            const toggle = document.querySelector('.theme-toggle');
+            const root = document.documentElement;
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved) {
+                root.setAttribute('data-theme', saved);
+            } else if (prefersDark) {
+                root.setAttribute('data-theme', 'dark');
+            }
+            toggle.addEventListener('click', function () {
+                const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                if (next === 'light') {
+                    root.removeAttribute('data-theme');
+                } else {
+                    root.setAttribute('data-theme', next);
+                }
+                localStorage.setItem('theme', next);
+            });
+        })();
+
         function displayFileLinks() {
             const fileListContainer = document.querySelector('#file-links ul');
             fileListContainer.innerHTML = '';
