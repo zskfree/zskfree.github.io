@@ -336,6 +336,19 @@
             transition: color 0.3s ease;
         }
 
+        .footer-stats {
+            margin-top: 8px;
+            font-size: 10px;
+            font-family: var(--font-mono);
+            color: var(--color-text-subtle);
+            text-align: center;
+        }
+
+        .footer-stats-divider {
+            margin: 0 4px;
+            color: var(--color-text-subtle);
+        }
+
         /* 响应式 */
         @media (max-width: 600px) {
             .container {
@@ -428,13 +441,12 @@
 
         <div class="footer">
             <div>© zskksz</div>
-            <div style="margin-top: 8px; font-size: 10px;">
+            <div class="footer-stats">
                 <span id="busuanzi_container_site_pv" style="display:none">
                     PV: <span id="busuanzi_value_site_pv"></span>
                 </span>
-                <span style="margin: 0 4px;">|</span>
                 <span id="busuanzi_container_site_uv" style="display:none">
-                    UV: <span id="busuanzi_value_site_uv"></span>
+                    <span class="footer-stats-divider">|</span>UV: <span id="busuanzi_value_site_uv"></span>
                 </span>
             </div>
         </div>
