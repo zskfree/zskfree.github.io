@@ -492,6 +492,11 @@
             const repositoryName = 'https://www.280468.xyz';
             const files = [
                 {
+                    name: 'PromptOptimizer',
+                    path: 'https://github.com/zskfree/prompt_optimizer',
+                    description: '轻量、无主窗口的 Windows 提示词优化工具。选中文字，按 Ctrl 快速三击 A，自动优化提示词并写入剪贴板。'
+                },
+                {
                     name: 'News-Agent',
                     path: 'News-Agent',
                     description: 'AI 新闻聚合与 RSS 情报看板，按 AI、科技、市场主题自动整理资讯。'
@@ -543,7 +548,7 @@
                 name.className = 'project-name';
                 description.className = 'project-description';
 
-                link.href = `${repositoryName}/${file.path}`;
+                link.href = file.path.startsWith('http') ? file.path : `${repositoryName}/${file.path}`;
                 link.target = '_blank';
                 name.textContent = file.name;
                 description.textContent = file.description;
