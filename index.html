@@ -2,566 +2,574 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>生如夏花</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8N8EL5FCK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>生如夏花</title>
+  <!-- Google tag (gtag.js) -->
+  <script async
+    src="https://www.googletagmanager.com/gtag/js?id=G-D8N8EL5FCK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'G-D8N8EL5FCK');
-    </script>
-    <!-- 不蒜子统计 -->
-    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <style>
-        :root {
-            /* 极简主义配色：克制的灰阶 + 一抹墨色 */
-            --color-bg: #fafaf9;
-            --color-surface: #ffffff;
-            --color-text: #1a1a1a;
-            --color-text-muted: #737373;
-            --color-text-subtle: #a3a3a3;
-            --color-border: #e5e5e5;
-            --color-border-strong: #1a1a1a;
-            --color-accent: #1a1a1a;
-            --color-error: #991b1b;
+    gtag('config', 'G-D8N8EL5FCK');
+  </script>
+  <!-- 不蒜子统计 -->
+  <script async
+    src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <style>
+    :root {
+      /* 极简主义配色：克制的灰阶 + 一抹墨色 */
+      --color-bg: #fafaf9;
+      --color-surface: #ffffff;
+      --color-text: #1a1a1a;
+      --color-text-muted: #737373;
+      --color-text-subtle: #a3a3a3;
+      --color-border: #e5e5e5;
+      --color-border-strong: #1a1a1a;
+      --color-accent: #1a1a1a;
+      --color-error: #991b1b;
 
-            --space-xs: 8px;
-            --space-sm: 12px;
-            --space-md: 24px;
-            --space-lg: 48px;
-            --space-xl: 80px;
+      --space-xs: 8px;
+      --space-sm: 12px;
+      --space-md: 24px;
+      --space-lg: 48px;
+      --space-xl: 80px;
 
-            --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
-            --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
-            --font-mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
-        }
+      --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+      --font-mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+    }
 
-        [data-theme="dark"] {
-            --color-bg: #121212;
-            --color-surface: #1e1e1e;
-            --color-text: #e5e5e5;
-            --color-text-muted: #a3a3a3;
-            --color-text-subtle: #737373;
-            --color-border: #2e2e2e;
-            --color-border-strong: #e5e5e5;
-            --color-accent: #e5e5e5;
-            --color-error: #f87171;
-        }
+    [data-theme="dark"] {
+      --color-bg: #121212;
+      --color-surface: #1e1e1e;
+      --color-text: #e5e5e5;
+      --color-text-muted: #a3a3a3;
+      --color-text-subtle: #737373;
+      --color-border: #2e2e2e;
+      --color-border-strong: #e5e5e5;
+      --color-accent: #e5e5e5;
+      --color-error: #f87171;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        html {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            font-family: var(--font-sans);
-            font-size: 15px;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 480px;
-            padding: var(--space-xl) var(--space-md);
-        }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      padding: var(--space-xl) var(--space-md);
+    }
 
-        /* 顶部标识：极小、低调 */
-        .brand {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            color: var(--color-text-subtle);
-            text-transform: uppercase;
-            margin-bottom: var(--space-xl);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
+    /* 顶部标识：极小、低调 */
+    .brand {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--color-text-subtle);
+      text-transform: uppercase;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
 
-        .brand-line {
-            flex: 1;
-            height: 1px;
-            background: var(--color-border);
-            transition: background 0.3s ease;
-        }
+    .brand-line {
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+      transition: background 0.3s ease;
+    }
 
-        .brand-github {
-            color: var(--color-text);
-            display: flex;
-            transition: transform 0.2s ease, color 0.3s ease;
-        }
+    .brand-github {
+      color: var(--color-text);
+      display: flex;
+      transition: transform 0.2s ease, color 0.3s ease;
+    }
 
-        .brand-github:hover {
-            color: var(--color-accent);
-            transform: scale(1.15);
-        }
+    .brand-github:hover {
+      color: var(--color-accent);
+      transform: scale(1.15);
+    }
 
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--color-text);
-            cursor: pointer;
-            display: flex;
-            padding: 0;
-            transition: transform 0.2s ease, color 0.2s ease;
-        }
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--color-text);
+      cursor: pointer;
+      display: flex;
+      padding: 0;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
 
-        .theme-toggle:hover {
-            color: var(--color-accent);
-            transform: scale(1.15);
-        }
+    .theme-toggle:hover {
+      color: var(--color-accent);
+      transform: scale(1.15);
+    }
 
-        .theme-toggle .icon-sun,
-        .theme-toggle .icon-moon {
-            display: none;
-        }
+    .theme-toggle .icon-sun,
+    .theme-toggle .icon-moon {
+      display: none;
+    }
 
-        :root:not([data-theme="dark"]) .theme-toggle .icon-moon {
-            display: block;
-        }
+    :root:not([data-theme="dark"]) .theme-toggle .icon-moon {
+      display: block;
+    }
 
-        [data-theme="dark"] .theme-toggle .icon-sun {
-            display: block;
-        }
+    [data-theme="dark"] .theme-toggle .icon-sun {
+      display: block;
+    }
 
-        /* 引文：衬线字体，留白充足 */
-        blockquote {
-            margin: 0 0 var(--space-xl) 0;
-            padding: 0;
-            font-family: var(--font-serif);
-            font-size: 18px;
-            line-height: 1.9;
-            color: var(--color-text);
-            font-weight: 400;
-            position: relative;
-            transition: color 0.3s ease;
-        }
+    /* 引文：衬线字体，留白充足 */
+    blockquote {
+      margin: 0 0 var(--space-xl) 0;
+      padding: 0;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.9;
+      color: var(--color-text);
+      font-weight: 400;
+      position: relative;
+      transition: color 0.3s ease;
+    }
 
-        blockquote p {
-            margin: 0 0 var(--space-md) 0;
-        }
+    blockquote p {
+      margin: 0 0 var(--space-md) 0;
+    }
 
-        blockquote cite {
-            display: block;
-            font-family: var(--font-sans);
-            font-size: 12px;
-            font-style: normal;
-            color: var(--color-text-muted);
-            letter-spacing: 0.05em;
-            margin-top: var(--space-md);
-            transition: color 0.3s ease;
-        }
+    blockquote cite {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-style: normal;
+      color: var(--color-text-muted);
+      letter-spacing: 0.05em;
+      margin-top: var(--space-md);
+      transition: color 0.3s ease;
+    }
 
-        blockquote cite::before {
-            content: "— ";
-        }
+    blockquote cite::before {
+      content: "— ";
+    }
 
-        /* 分隔线 */
-        .divider {
-            border: 0;
-            height: 1px;
-            background: var(--color-border);
-            margin: var(--space-lg) 0;
-            transition: background 0.3s ease;
-        }
+    /* 分隔线 */
+    .divider {
+      border: 0;
+      height: 1px;
+      background: var(--color-border);
+      margin: var(--space-lg) 0;
+      transition: background 0.3s ease;
+    }
 
-        /* 登录区：克制的表单 */
-        .login-form {
-            background: transparent;
-        }
+    /* 登录区：克制的表单 */
+    .login-form {
+      background: transparent;
+    }
 
-        .login-form .section-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--color-text-muted);
-            margin-bottom: var(--space-md);
-        }
+    .login-form .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-md);
+    }
 
-        .field {
-            margin-bottom: var(--space-md);
-        }
+    .field {
+      margin-bottom: var(--space-md);
+    }
 
-        .login-form label {
-            display: block;
-            font-size: 12px;
-            color: var(--color-text-muted);
-            margin-bottom: var(--space-xs);
-            letter-spacing: 0.02em;
-        }
+    .login-form label {
+      display: block;
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xs);
+      letter-spacing: 0.02em;
+    }
 
-        .login-form input {
-            width: 100%;
-            padding: 10px 0;
-            border: none;
-            border-bottom: 1px solid var(--color-border);
-            background: transparent;
-            color: var(--color-text);
-            font-family: var(--font-sans);
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.2s ease;
-        }
+    .login-form input {
+      width: 100%;
+      padding: 10px 0;
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
 
-        .login-form input:focus {
-            border-bottom-color: var(--color-border-strong);
-        }
+    .login-form input:focus {
+      border-bottom-color: var(--color-border-strong);
+    }
 
-        .login-form input::placeholder {
-            color: var(--color-text-subtle);
-        }
+    .login-form input::placeholder {
+      color: var(--color-text-subtle);
+    }
 
-        .login-form button {
-            width: 100%;
-            padding: 14px;
-            margin-top: var(--space-sm);
-            background: var(--color-accent);
-            color: var(--color-surface);
-            border: 1px solid var(--color-accent);
-            font-family: var(--font-sans);
-            font-size: 13px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
+    .login-form button {
+      width: 100%;
+      padding: 14px;
+      margin-top: var(--space-sm);
+      background: var(--color-accent);
+      color: var(--color-surface);
+      border: 1px solid var(--color-accent);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
 
-        .login-form button:hover {
-            background: transparent;
-            color: var(--color-accent);
-        }
+    .login-form button:hover {
+      background: transparent;
+      color: var(--color-accent);
+    }
 
-        #login-error {
-            margin-top: var(--space-md);
-            padding: var(--space-sm) 0;
-            font-size: 13px;
-            color: var(--color-error);
-            border-top: 1px solid var(--color-error);
-            text-align: left;
-        }
+    #login-error {
+      margin-top: var(--space-md);
+      padding: var(--space-sm) 0;
+      font-size: 13px;
+      color: var(--color-error);
+      border-top: 1px solid var(--color-error);
+      text-align: left;
+    }
 
-        /* 文件列表：清晰的层级 */
-        #file-links {
-            margin-top: var(--space-lg);
-        }
+    /* 文件列表：清晰的层级 */
+    #file-links {
+      margin-top: var(--space-lg);
+    }
 
-        #file-links .section-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--color-text-muted);
-            margin-bottom: var(--space-md);
-            padding-bottom: var(--space-sm);
-            border-bottom: 1px solid var(--color-border);
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
+    #file-links .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--color-border);
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
 
-        #file-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    #file-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        #file-links li {
-            margin: 0;
-        }
+    #file-links li {
+      margin: 0;
+    }
 
-        #file-links li a {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--space-md);
-            color: var(--color-text);
-            text-decoration: none;
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid var(--color-border);
-            font-size: 15px;
-            transition: padding-left 0.25s ease, color 0.3s ease, border-color 0.3s ease;
-        }
+    #file-links li a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      color: var(--color-text);
+      text-decoration: none;
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 15px;
+      transition: padding-left 0.25s ease, color 0.3s ease, border-color 0.3s ease;
+    }
 
-        .project-info {
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
+    .project-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
 
-        .project-name {
-            color: var(--color-text);
-        }
+    .project-name {
+      color: var(--color-text);
+    }
 
-        .project-description {
-            color: var(--color-text-muted);
-            font-size: 12px;
-            line-height: 1.5;
-        }
+    .project-description {
+      color: var(--color-text-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
 
-        #file-links li a::after {
-            content: "→";
-            font-family: var(--font-mono);
-            color: var(--color-text-subtle);
-            flex: 0 0 auto;
-            transition: transform 0.25s ease, color 0.2s ease;
-        }
+    #file-links li a::after {
+      content: "→";
+      font-family: var(--font-mono);
+      color: var(--color-text-subtle);
+      flex: 0 0 auto;
+      transition: transform 0.25s ease, color 0.2s ease;
+    }
 
-        #file-links li a:hover {
-            padding-left: var(--space-sm);
-            color: var(--color-accent);
-        }
+    #file-links li a:hover {
+      padding-left: var(--space-sm);
+      color: var(--color-accent);
+    }
 
-        #file-links li a:hover::after {
-            transform: translateX(4px);
-            color: var(--color-accent);
-        }
+    #file-links li a:hover::after {
+      transform: translateX(4px);
+      color: var(--color-accent);
+    }
 
-        /* 页脚 */
-        .footer {
-            margin-top: var(--space-xl);
-            padding-top: var(--space-md);
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--color-text-subtle);
-            letter-spacing: 0.05em;
-            text-align: center;
-            transition: color 0.3s ease;
-        }
+    /* 页脚 */
+    .footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-subtle);
+      letter-spacing: 0.05em;
+      text-align: center;
+      transition: color 0.3s ease;
+    }
 
-        .footer-stats {
-            margin-top: 8px;
-            font-size: 10px;
-            font-family: var(--font-mono);
-            color: var(--color-text-subtle);
-            text-align: center;
-        }
+    .footer-stats {
+      margin-top: 8px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: var(--color-text-subtle);
+      text-align: center;
+    }
 
-        .footer-stats-divider {
-            margin: 0 4px;
-            color: var(--color-text-subtle);
-        }
+    .footer-stats-divider {
+      margin: 0 4px;
+      color: var(--color-text-subtle);
+    }
 
-        /* 响应式 */
-        @media (max-width: 600px) {
-            .container {
-                padding: var(--space-lg) var(--space-md);
-            }
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .container {
+        padding: var(--space-lg) var(--space-md);
+      }
 
-            blockquote {
-                font-size: 16px;
-            }
-        }
+      blockquote {
+        font-size: 16px;
+      }
+    }
 
-        /* 微妙的载入动画 */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
+    /* 微妙的载入动画 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .container>* {
-            animation: fadeIn 0.6s ease-out backwards;
-        }
+    .container>* {
+      animation: fadeIn 0.6s ease-out backwards;
+    }
 
-        .brand {
-            animation-delay: 0s;
-        }
+    .brand {
+      animation-delay: 0s;
+    }
 
-        blockquote {
-            animation-delay: 0.1s;
-        }
+    blockquote {
+      animation-delay: 0.1s;
+    }
 
-        .divider {
-            animation-delay: 0.2s;
-        }
+    .divider {
+      animation-delay: 0.2s;
+    }
 
-        #login-section,
-        #file-links {
-            animation-delay: 0.3s;
-        }
-    </style>
+    #login-section,
+    #file-links {
+      animation-delay: 0.3s;
+    }
+  </style>
 </head>
 
 <body>
-    <main class="container">
-        <div class="brand">
-            <span>生如夏花</span>
-            <div class="brand-line"></div>
-            <button class="theme-toggle" title="切换主题">
-                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-            </button>
-            <a href="https://github.com/zskfree" target="_blank" class="brand-github" title="GitHub Profile">
-                <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-                    </path>
-                </svg>
-            </a>
-        </div>
+  <main class="container">
+    <div class="brand">
+      <span>生如夏花</span>
+      <div class="brand-line"></div>
+      <button class="theme-toggle" title="切换主题">
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+      <a href="https://github.com/zskfree" target="_blank" class="brand-github"
+        title="GitHub Profile">
+        <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
 
-        <blockquote>
-            <p>人最宝贵的是生命。生命对于每个人只有一次。</p>
-            <p>人的一生应当这样度过：当他回首往事时，不因虚度年华而悔恨，也不因碌碌无为而羞耻。</p>
-            <cite>奥斯特洛夫斯基</cite>
-        </blockquote>
+    <blockquote>
+      <p>人最宝贵的是生命。生命对于每个人只有一次。</p>
+      <p>人的一生应当这样度过：当他回首往事时，不因虚度年华而悔恨，也不因碌碌无为而羞耻。</p>
+      <cite>奥斯特洛夫斯基</cite>
+    </blockquote>
 
-        <hr class="divider" />
+    <hr class="divider" />
 
-        <div id="file-links">
-            <div class="section-label">Projects</div>
-            <ul><!-- 动态注入 --></ul>
-        </div>
+    <div id="file-links">
+      <div class="section-label">Projects</div>
+      <ul><!-- 动态注入 --></ul>
+    </div>
 
-        <div class="footer">
-            <div>© zskksz</div>
-            <div class="footer-stats">
-                <span id="busuanzi_container_site_pv" style="display:none">
-                    PV: <span id="busuanzi_value_site_pv"></span>
-                </span>
-                <span id="busuanzi_container_site_uv" style="display:none">
-                    <span class="footer-stats-divider">|</span>UV: <span id="busuanzi_value_site_uv"></span>
-                </span>
-            </div>
-        </div>
-    </main>
+    <div class="footer">
+      <div>© zskksz</div>
+      <div class="footer-stats">
+        <span id="busuanzi_container_site_pv" style="display:none">
+          PV: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        <span id="busuanzi_container_site_uv" style="display:none">
+          <span class="footer-stats-divider">|</span>UV: <span
+            id="busuanzi_value_site_uv"></span>
+        </span>
+      </div>
+    </div>
+  </main>
 
-    <script>
-        // 暗色模式切换
-        (function () {
-            const toggle = document.querySelector('.theme-toggle');
-            const root = document.documentElement;
-            const saved = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (saved) {
-                root.setAttribute('data-theme', saved);
-            } else if (prefersDark) {
-                root.setAttribute('data-theme', 'dark');
-            }
-            toggle.addEventListener('click', function () {
-                const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-                const next = current === 'dark' ? 'light' : 'dark';
-                if (next === 'light') {
-                    root.removeAttribute('data-theme');
-                } else {
-                    root.setAttribute('data-theme', next);
-                }
-                localStorage.setItem('theme', next);
-            });
-        })();
-
-        function displayFileLinks() {
-            const fileListContainer = document.querySelector('#file-links ul');
-            fileListContainer.innerHTML = '';
-            const githubUsername = 'zskksz';
-            const repositoryName = 'https://www.280468.xyz';
-            const files = [
-                {
-                    name: 'PromptOptimizer',
-                    path: 'https://github.com/zskfree/prompt_optimizer',
-                    description: '轻量、无主窗口的 Windows 提示词优化工具。选中文字，按 Ctrl 快速三击 A，自动优化提示词并写入剪贴板。'
-                },
-                {
-                    name: 'News-Agent',
-                    path: 'News-Agent',
-                    description: 'AI 新闻聚合与 RSS 情报看板，按 AI、科技、市场主题自动整理资讯。'
-                },
-                {
-                    name: 'HTML PPT',
-                    path: 'paper',
-                    description: '基于 Reveal.js 的在线演示文稿，用于项目展示、数据报告和研究分享。'
-                },
-                {
-                    name: 'ScholarFlow',
-                    path: 'ScholarFlow',
-                    description: 'AI 文献综述自动化工具，支持参考文献匹配和多模型摘要生成。'
-                },
-                {
-                    name: 'How to Learn',
-                    path: 'How_to_learn',
-                    description: '科研 AI 工具与科学访问网络教程，覆盖 ChatGPT、Codex、Gemini 和 Clash Verge 配置。'
-                },
-                {
-                    name: 'PowerTrade Demo',
-                    path: 'PowerTrade/demo_showcase/index.html',
-                    description: '脱敏电力交易展示版，覆盖策略报告、负荷天气分析和未来负荷预测。'
-                },
-                {
-                    name: '深大体育场馆秒约',
-                    path: 'SZU_Sports',
-                    description: '面向 SZU 场馆预约的脚本助手，支持定时抢票、自动重试和状态提醒。'
-                },
-                {
-                    name: 'MdQuiz',
-                    path: 'MdQuiz',
-                    description: 'Markdown 题库练习系统，支持顺序刷题、错题复习、模拟考试与学习统计。已收录电力交易员中级考试题库。'
-                },
-                {
-                    name: 'Minimalist New Tab',
-                    path: 'Minimalist-New-Tab/newtab.html',
-                    description: '极简毛玻璃风格新标签页，集成快捷书签、搜索引擎切换与每日壁纸。'
-                },
-            ];
-            files.forEach(file => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                const info = document.createElement('span');
-                const name = document.createElement('span');
-                const description = document.createElement('span');
-
-                info.className = 'project-info';
-                name.className = 'project-name';
-                description.className = 'project-description';
-
-                link.href = file.path.startsWith('http') ? file.path : `${repositoryName}/${file.path}`;
-                link.target = '_blank';
-                name.textContent = file.name;
-                description.textContent = file.description;
-                info.appendChild(name);
-                info.appendChild(description);
-                link.appendChild(info);
-                listItem.appendChild(link);
-                fileListContainer.appendChild(listItem);
-            });
+  <script>
+    // 暗色模式切换
+    (function () {
+      const toggle = document.querySelector('.theme-toggle');
+      const root = document.documentElement;
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved) {
+        root.setAttribute('data-theme', saved);
+      } else if (prefersDark) {
+        root.setAttribute('data-theme', 'dark');
+      }
+      toggle.addEventListener('click', function () {
+        const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        if (next === 'light') {
+          root.removeAttribute('data-theme');
+        } else {
+          root.setAttribute('data-theme', next);
         }
+        localStorage.setItem('theme', next);
+      });
+    })();
 
-        displayFileLinks();
-    </script>
+    function displayFileLinks() {
+      const fileListContainer = document.querySelector('#file-links ul');
+      fileListContainer.innerHTML = '';
+      const githubUsername = 'zskksz';
+      const repositoryName = 'https://www.280468.xyz';
+      const files = [
+        {
+          name: 'PromptOptimizer',
+          path: 'prompt_optimizer',
+          description: '轻量、无主窗口的 Windows 提示词优化工具。选中文字，按 Ctrl 快速三击 A，自动优化提示词并写入剪贴板。'
+        },
+        {
+          name: 'News-Agent',
+          path: 'News-Agent',
+          description: 'AI 新闻聚合与 RSS 情报看板，按 AI、科技、市场主题自动整理资讯。'
+        },
+        {
+          name: 'HTML PPT',
+          path: 'paper',
+          description: '基于 Reveal.js 的在线演示文稿，用于项目展示、数据报告和研究分享。'
+        },
+        {
+          name: 'ScholarFlow',
+          path: 'ScholarFlow',
+          description: 'AI 文献综述自动化工具，支持参考文献匹配和多模型摘要生成。'
+        },
+        {
+          name: 'How to Learn',
+          path: 'How_to_learn',
+          description: '科研 AI 工具与科学访问网络教程，覆盖 ChatGPT、Codex、Gemini 和 Clash Verge 配置。'
+        },
+        {
+          name: 'PowerTrade Demo',
+          path: 'PowerTrade/demo_showcase/index.html',
+          description: '脱敏电力交易展示版，覆盖策略报告、负荷天气分析和未来负荷预测。'
+        },
+        {
+          name: '深大体育场馆秒约',
+          path: 'SZU_Sports',
+          description: '面向 SZU 场馆预约的脚本助手，支持定时抢票、自动重试和状态提醒。'
+        },
+        {
+          name: 'MdQuiz',
+          path: 'MdQuiz',
+          description: 'Markdown 题库练习系统，支持顺序刷题、错题复习、模拟考试与学习统计。已收录电力交易员中级考试题库。'
+        },
+        {
+          name: 'Minimalist New Tab',
+          path: 'Minimalist-New-Tab/newtab.html',
+          description: '极简毛玻璃风格新标签页，集成快捷书签、搜索引擎切换与每日壁纸。'
+        },
+      ];
+      files.forEach(file => {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        const info = document.createElement('span');
+        const name = document.createElement('span');
+        const description = document.createElement('span');
+
+        info.className = 'project-info';
+        name.className = 'project-name';
+        description.className = 'project-description';
+
+        link.href = file.path.startsWith('http') ? file.path : `${repositoryName}/${file.path}`;
+        link.target = '_blank';
+        name.textContent = file.name;
+        description.textContent = file.description;
+        info.appendChild(name);
+        info.appendChild(description);
+        link.appendChild(info);
+        listItem.appendChild(link);
+        fileListContainer.appendChild(listItem);
+      });
+    }
+
+    displayFileLinks();
+  </script>
 </body>
 
 </html>
