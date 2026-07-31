@@ -33,9 +33,9 @@
 
       --space-xs: 8px;
       --space-sm: 12px;
-      --space-md: 24px;
-      --space-lg: 48px;
-      --space-xl: 80px;
+      --space-md: 20px;
+      --space-lg: 32px;
+      --space-xl: 48px;
 
       --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
       --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
@@ -80,7 +80,7 @@
 
     .container {
       width: 100%;
-      max-width: 480px;
+      max-width: 760px;
       padding: var(--space-xl) var(--space-md);
     }
 
@@ -91,7 +91,7 @@
       letter-spacing: 0.15em;
       color: var(--color-text-subtle);
       text-transform: uppercase;
-      margin-bottom: var(--space-xl);
+      margin-bottom: var(--space-lg);
       display: flex;
       align-items: center;
       gap: var(--space-sm);
@@ -145,11 +145,11 @@
 
     /* 引文：衬线字体，留白充足 */
     blockquote {
-      margin: 0 0 var(--space-xl) 0;
+      margin: 0 0 var(--space-lg) 0;
       padding: 0;
       font-family: var(--font-serif);
-      font-size: 18px;
-      line-height: 1.9;
+      font-size: 17px;
+      line-height: 1.8;
       color: var(--color-text);
       font-weight: 400;
       position: relative;
@@ -157,7 +157,7 @@
     }
 
     blockquote p {
-      margin: 0 0 var(--space-md) 0;
+      margin: 0 0 var(--space-xs) 0;
     }
 
     blockquote cite {
@@ -167,7 +167,7 @@
       font-style: normal;
       color: var(--color-text-muted);
       letter-spacing: 0.05em;
-      margin-top: var(--space-md);
+      margin-top: var(--space-sm);
       transition: color 0.3s ease;
     }
 
@@ -260,7 +260,7 @@
       text-align: left;
     }
 
-    /* 文件列表：清晰的层级 */
+    /* 文件列表：双列极简网格 */
     #file-links {
       margin-top: var(--space-lg);
     }
@@ -281,6 +281,9 @@
       list-style: none;
       padding: 0;
       margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px 16px;
     }
 
     #file-links li {
@@ -289,26 +292,33 @@
 
     #file-links li a {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: var(--space-md);
+      gap: var(--space-xs);
       color: var(--color-text);
       text-decoration: none;
-      padding: var(--space-md) 0;
-      border-bottom: 1px solid var(--color-border);
+      padding: 14px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      height: 100%;
       font-size: 15px;
-      transition: padding-left 0.25s ease, color 0.3s ease, border-color 0.3s ease;
+      transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
     }
 
     .project-info {
       min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
+      flex: 1;
     }
 
     .project-name {
       color: var(--color-text);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.4;
+      transition: color 0.2s ease;
     }
 
     .project-description {
@@ -322,16 +332,21 @@
       font-family: var(--font-mono);
       color: var(--color-text-subtle);
       flex: 0 0 auto;
+      margin-top: 1px;
       transition: transform 0.25s ease, color 0.2s ease;
     }
 
     #file-links li a:hover {
-      padding-left: var(--space-sm);
+      border-color: var(--color-border-strong);
+      background-color: var(--color-surface);
+    }
+
+    #file-links li a:hover .project-name {
       color: var(--color-accent);
     }
 
     #file-links li a:hover::after {
-      transform: translateX(4px);
+      transform: translateX(3px);
       color: var(--color-accent);
     }
 
@@ -361,13 +376,18 @@
     }
 
     /* 响应式 */
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .container {
         padding: var(--space-lg) var(--space-md);
       }
 
       blockquote {
         font-size: 16px;
+      }
+
+      #file-links ul {
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
     }
 
