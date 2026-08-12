@@ -184,81 +184,7 @@
       transition: background 0.3s ease;
     }
 
-    /* 登录区：克制的表单 */
-    .login-form {
-      background: transparent;
-    }
 
-    .login-form .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-md);
-    }
-
-    .field {
-      margin-bottom: var(--space-md);
-    }
-
-    .login-form label {
-      display: block;
-      font-size: 12px;
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-xs);
-      letter-spacing: 0.02em;
-    }
-
-    .login-form input {
-      width: 100%;
-      padding: 10px 0;
-      border: none;
-      border-bottom: 1px solid var(--color-border);
-      background: transparent;
-      color: var(--color-text);
-      font-family: var(--font-sans);
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-
-    .login-form input:focus {
-      border-bottom-color: var(--color-border-strong);
-    }
-
-    .login-form input::placeholder {
-      color: var(--color-text-subtle);
-    }
-
-    .login-form button {
-      width: 100%;
-      padding: 14px;
-      margin-top: var(--space-sm);
-      background: var(--color-accent);
-      color: var(--color-surface);
-      border: 1px solid var(--color-accent);
-      font-family: var(--font-sans);
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    .login-form button:hover {
-      background: transparent;
-      color: var(--color-accent);
-    }
-
-    #login-error {
-      margin-top: var(--space-md);
-      padding: var(--space-sm) 0;
-      font-size: 13px;
-      color: var(--color-error);
-      border-top: 1px solid var(--color-error);
-      text-align: left;
-    }
 
     /* 文件列表：双列极简网格 */
     #file-links {
@@ -268,10 +194,11 @@
     #file-links .section-label {
       font-family: var(--font-mono);
       font-size: 11px;
+      font-weight: normal;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--color-text-muted);
-      margin-bottom: var(--space-md);
+      margin: 0 0 var(--space-md) 0;
       padding-bottom: var(--space-sm);
       border-bottom: 1px solid var(--color-border);
       transition: color 0.3s ease, border-color 0.3s ease;
@@ -391,39 +318,7 @@
       }
     }
 
-    /* 微妙的载入动画 */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .container>* {
-      animation: fadeIn 0.6s ease-out backwards;
-    }
-
-    .brand {
-      animation-delay: 0s;
-    }
-
-    blockquote {
-      animation-delay: 0.1s;
-    }
-
-    .divider {
-      animation-delay: 0.2s;
-    }
-
-    #login-section,
-    #file-links {
-      animation-delay: 0.3s;
-    }
   </style>
 </head>
 
@@ -432,7 +327,7 @@
     <div class="brand">
       <span>生如夏花</span>
       <div class="brand-line"></div>
-      <button class="theme-toggle" title="切换主题">
+      <button class="theme-toggle" title="切换主题" aria-label="切换明暗主题">
         <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="1.5"
           stroke-linecap="round" stroke-linejoin="round">
@@ -452,7 +347,7 @@
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
         </svg>
       </button>
-      <a href="https://github.com/zskfree" target="_blank" class="brand-github"
+      <a href="https://github.com/zskfree" target="_blank" rel="noopener noreferrer" class="brand-github"
         title="GitHub Profile">
         <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
           <path fill-rule="evenodd"
@@ -470,10 +365,10 @@
 
     <hr class="divider" />
 
-    <div id="file-links">
-      <div class="section-label">Projects</div>
+    <section id="file-links" aria-labelledby="projects-label">
+      <h2 class="section-label" id="projects-label">Projects</h2>
       <ul><!-- 动态注入 --></ul>
-    </div>
+    </section>
 
     <div class="footer">
       <div>© zskksz</div>
@@ -489,6 +384,7 @@
     </div>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>
     // 暗色模式切换
     (function () {
@@ -516,6 +412,7 @@
     function displayFileLinks() {
       const fileListContainer = document.querySelector('#file-links ul');
       fileListContainer.innerHTML = '';
+      const fragment = document.createDocumentFragment();
       const githubUsername = 'zskksz';
       const repositoryName = 'https://www.280468.xyz';
       const files = [
@@ -583,17 +480,49 @@
 
         link.href = file.path.startsWith('http') ? file.path : `${repositoryName}/${file.path}`;
         link.target = '_blank';
+        link.rel = 'noopener noreferrer';
         name.textContent = file.name;
         description.textContent = file.description;
         info.appendChild(name);
         info.appendChild(description);
         link.appendChild(info);
         listItem.appendChild(link);
-        fileListContainer.appendChild(listItem);
+        fragment.appendChild(listItem);
       });
+      fileListContainer.appendChild(fragment);
     }
 
     displayFileLinks();
+
+    // GSAP 动画编排
+    if (typeof gsap !== 'undefined') {
+      const mm = gsap.matchMedia();
+
+      mm.add({
+        reduceMotion: "(prefers-reduced-motion: reduce)",
+        isNormal: "(prefers-reduced-motion: no-preference)"
+      }, (context) => {
+        const { reduceMotion } = context.conditions;
+        const duration = reduceMotion ? 0 : 0.6;
+
+        gsap.from(".brand, blockquote, .divider, #file-links .section-label, .footer", {
+          y: 8,
+          autoAlpha: 0,
+          duration: duration,
+          ease: "power2.out",
+          stagger: 0.08
+        });
+
+        gsap.from("#file-links li", {
+          y: 12,
+          autoAlpha: 0,
+          duration: duration,
+          ease: "power2.out",
+          stagger: 0.04,
+          delay: reduceMotion ? 0 : 0.25
+        });
+      });
+    }
   </script>
 </body>
 
