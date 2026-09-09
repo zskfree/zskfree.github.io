@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<channel>
+<title>AI 与电力每日简报</title>
+<link>https://www.280468.xyz/daily-ai-power-brief/</link>
+<description>聚焦 AI、科技与自动化，以及中国电力市场、售电与能源行业的每日个人简报。</description>
+<language>zh-cn</language>
+<itunes:author>AI 与电力每日简报</itunes:author>
+<itunes:explicit>false</itunes:explicit>
+<atom:link href="https://www.280468.xyz/daily-ai-power-brief/feed.xml" rel="self" type="application/rss+xml" />
+</channel>
+</rss>
