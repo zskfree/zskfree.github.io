@@ -1,9 +1,9 @@
 [Unit]
-Description=Check for new AI and power brief every 15 minutes
+Description=Check for new AI and power brief every 2 minutes
 
 [Timer]
-OnBootSec=3min
-OnUnitActiveSec=15min
+OnBootSec=1min
+OnUnitActiveSec=2min
 Persistent=true
 Unit=daily-ai-power-brief.service
 
