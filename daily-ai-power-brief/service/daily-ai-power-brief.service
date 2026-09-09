@@ -1,0 +1,10 @@
+[Unit]
+Description=Generate and publish AI and power daily podcast
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/daily-ai-power-brief/site/daily-ai-power-brief/service/run.sh
+WorkingDirectory=/opt/daily-ai-power-brief/site
+Nice=10
