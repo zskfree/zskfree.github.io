@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AI 与电力每日简报</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:860px;margin:0 auto;padding:36px 20px;line-height:1.75;color:#111827;background:#f8fafc}main{background:#fff;padding:28px;border-radius:18px;box-shadow:0 8px 30px rgba(15,23,42,.07)}h1{margin-top:0}.meta{color:#64748b}.item{border-top:1px solid #e5e7eb;padding-top:20px;margin-top:20px}.tag{display:inline-block;background:#eef2ff;border-radius:999px;padding:2px 10px;font-size:13px}audio{width:100%;margin:12px 0}a{color:#2563eb}.empty{color:#64748b}</style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:860px;margin:0 auto;padding:36px 20px;line-height:1.75;color:#111827;background:#f8fafc}main{background:#fff;padding:28px;border-radius:18px;box-shadow:0 8px 30px rgba(15,23,42,.07)}h1{margin-top:0}.meta{color:#64748b}.item{border-top:1px solid #e5e7eb;padding-top:20px;margin-top:20px}.tag{display:inline-block;background:#eef2ff;border-radius:999px;padding:2px 10px;font-size:13px}audio{width:100%;margin:12px 0}a{color:#2563eb}.empty{color:#64748b}.news-img{width:100%;max-height:420px;object-fit:cover;border-radius:14px;margin:8px 0 14px;background:#f1f5f9}
+</style>
 </head>
 <body><main>
 <h1>AI 与电力每日简报</h1>
@@ -13,5 +14,5 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-widt
 <div id="app" class="empty">正在读取最新一期……</div>
 </main>
 <script>
-(async()=>{const app=document.getElementById('app');try{const r=await fetch('./data/latest.json?ts='+Date.now());if(!r.ok)throw 0;const d=await r.json();let h=`<h2>${d.title||'最新一期'}</h2><p class="meta">${d.date||''}</p>`;if(d.audio_url)h+=`<audio controls preload="none" src="${d.audio_url}"></audio>`;if(d.summary)h+=`<p><strong>今日判断：</strong>${d.summary}</p>`;(d.news||[]).forEach((n,i)=>{h+=`<section class="item"><span class="tag">${n.category||'要闻'}</span><h3>${i+1}. ${n.title}</h3><p>${n.summary||''}</p><p><strong>影响：</strong>${n.impact||''}</p><p><strong>与你的相关性：</strong>${n.career_relevance||''}</p>${n.source_url?`<p><a href="${n.source_url}" target="_blank" rel="noopener">原始来源</a></p>`:''}</section>`});h+=`<p class="item"><a href="./feed.xml">Podcast RSS</a></p>`;app.className='';app.innerHTML=h}catch(e){app.textContent='首期内容尚未发布。RSS 与页面框架已经就绪。'}})();
+(async()=>{const app=document.getElementById('app');try{const r=await fetch('./data/latest.json?ts='+Date.now());if(!r.ok)throw 0;const d=await r.json();let h=`<h2>${d.title||'最新一期'}</h2><p class="meta">${d.date||''}</p>`;if(d.audio_url)h+=`<audio controls preload="none" src="${d.audio_url}"></audio>`;if(d.summary)h+=`<p><strong>今日判断：</strong>${d.summary}</p>`;(d.news||[]).forEach((n,i)=>{h+=`<section class="item"><span class="tag">${n.category||'要闻'}</span><h3>${i+1}. ${n.title}</h3>${n.image_url?`<img class="news-img" src="${n.image_url}" alt="${n.title}" loading="lazy">`:''}<p>${n.summary||''}</p><p><strong>影响：</strong>${n.impact||''}</p><p><strong>与你的相关性：</strong>${n.career_relevance||''}</p>${n.source_url?`<p><a href="${n.source_url}" target="_blank" rel="noopener">原始来源</a></p>`:''}</section>`});h+=`<p class="item"><a href="./feed.xml">Podcast RSS</a></p>`;app.className='';app.innerHTML=h}catch(e){app.textContent='首期内容尚未发布。RSS 与页面框架已经就绪。'}})();
 </script></body></html>
