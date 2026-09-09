@@ -1,0 +1,11 @@
+[Unit]
+Description=Check for new AI and power brief every 15 minutes
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=15min
+Persistent=true
+Unit=daily-ai-power-brief.service
+
+[Install]
+WantedBy=timers.target
