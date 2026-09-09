@@ -22,7 +22,6 @@ SITE_URL = os.getenv("SITE_URL", "https://www.280468.xyz/daily-ai-power-brief")
 MODELS = [
     ("gemini-3.1-flash-tts-preview", "wav"),
     ("gemini-2.5-flash-preview-tts", "wav"),
-    ("@cf/myshell-ai/melotts", "mp3"),
 ]
 
 
@@ -96,7 +95,7 @@ def normalize(raw_path, ctype, out_path):
 def synth_segment(text, idx, work, key):
     errors = []
     for model, fmt in MODELS:
-        for attempt in range(1, 3):
+        for attempt in range(1, 4):
             raw = work / f"seg-{idx:02d}-{attempt}.raw"
             mp3 = work / f"seg-{idx:02d}.mp3"
             try:
