@@ -43,10 +43,7 @@ def split_text(text, limit=850):
     paras = [p.strip() for p in text.replace("\r", "").split("\n") if p.strip()]
     out, buf = [], ""
     for p in paras:
-        if len(p) > limit:
-            parts = [p[i:i + limit] for i in range(0, len(p), limit)]
-        else:
-            parts = [p]
+        parts = [p[i:i + limit] for i in range(0, len(p), limit)] if len(p) > limit else [p]
         for part in parts:
             if buf and len(buf) + len(part) + 1 > limit:
                 out.append(buf)
@@ -75,7 +72,7 @@ def read_key():
 def request_tts(text, model, response_format, key, target):
     body = json.dumps({"model": model, "input": text, "voice": VOICE, "response_format": response_format}, ensure_ascii=False).encode("utf-8")
     req = urllib.request.Request(API_URL, data=body, method="POST", headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json", "User-Agent": "daily-ai-power-brief/1.0"})
-    with urllib.request.urlopen(req, timeout=180) as resp:
+    with urllib.request.urlopen(req, timeout=240) as resp:
         raw = resp.read()
         ctype = (resp.headers.get("Content-Type") or "application/octet-stream").lower()
         routed = resp.headers.get("X-Routed-Via") or model
@@ -112,7 +109,7 @@ def synth_segment(text, idx, work, key):
             except Exception as e:
                 errors.append(f"{model}#{attempt}:{type(e).__name__}:{e}")
                 log(f"segment {idx}: {model} attempt {attempt} failed")
-                time.sleep(2 * attempt)
+                time.sleep(3 * attempt)
     raise RuntimeError("; ".join(errors))
 
 
@@ -130,7 +127,9 @@ def render_post(data):
     for i, n in enumerate(data.get("news", []), 1):
         source = n.get("source_url") or n.get("source") or ""
         link = f'<p><a href="{html.escape(source)}" rel="noopener">原始来源</a></p>' if source.startswith("http") else ""
-        blocks.append(f'<section><h2>{i}. {html.escape(str(n.get("title", "")))}</h2><p>{html.escape(str(n.get("summary", "")))}</p><p><strong>影响：</strong>{html.escape(str(n.get("impact", "")))}</p><p><strong>与你的相关性：</strong>{html.escape(str(n.get("career_relevance", "")))}</p>{link}</section>')
+        image = n.get("image_url") or ""
+        img = f'<img style="width:100%;max-height:420px;object-fit:cover;border-radius:14px" src="{html.escape(image)}" alt="">' if image.startswith("http") else ""
+        blocks.append(f'<section><h2>{i}. {html.escape(str(n.get("title", "")))}</h2>{img}<p>{html.escape(str(n.get("summary", "")))}</p><p><strong>影响：</strong>{html.escape(str(n.get("impact", "")))}</p><p><strong>与你的相关性：</strong>{html.escape(str(n.get("career_relevance", "")))}</p>{link}</section>')
     audio = f'<audio controls preload="none" src="../audio/{date}.mp3"></audio>'
     return f'<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title><style>body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:820px;margin:40px auto;padding:0 20px;line-height:1.75}}section{{border-top:1px solid #ddd;margin-top:22px;padding-top:14px}}audio{{width:100%}}</style><h1>{title}</h1><p>{date}</p>{audio}<p><strong>今日判断：</strong>{summary}</p>{"".join(blocks)}'
 
