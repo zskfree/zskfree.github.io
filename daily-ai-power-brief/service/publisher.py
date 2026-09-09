@@ -4,6 +4,7 @@ import html
 import json
 import os
 import shutil
+import sqlite3
 import subprocess
 import sys
 import tempfile
@@ -58,12 +59,17 @@ def split_text(text, limit=850):
 
 
 def read_key():
-    if not KEY_FILE.exists():
-        raise RuntimeError(f"missing FreeLLMAPI key file: {KEY_FILE}")
-    key = KEY_FILE.read_text(encoding="utf-8").strip()
-    if not key:
-        raise RuntimeError("FreeLLMAPI key file is empty")
-    return key
+    if KEY_FILE.exists():
+        key = KEY_FILE.read_text(encoding="utf-8").strip()
+        if key:
+            return key
+    db_path = Path("/var/lib/docker/volumes/freellmapi_freellmapi-data/_data/freeapi.db")
+    if db_path.exists():
+        with sqlite3.connect(db_path) as conn:
+            row = conn.execute("SELECT value FROM settings WHERE key = 'unified_api_key'").fetchone()
+        if row and row[0]:
+            return str(row[0]).strip()
+    raise RuntimeError("FreeLLMAPI unified API key is unavailable")
 
 
 def request_tts(text, model, response_format, key, target):
